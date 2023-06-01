@@ -10,4 +10,5 @@ public class user {
     @GeneratedValue
     private int id;
 
+
 }
