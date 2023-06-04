@@ -37,7 +37,7 @@ import com.learning.BankingApplication.security.service.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/customer") //root url
+@RequestMapping("/api") //root url
 public class AuthController {
   @Autowired
   AuthenticationManager authenticationManager;
@@ -54,7 +54,7 @@ public class AuthController {
   @Autowired
   JwtUtils jwtUtils;
 
-  @PostMapping("/register")
+  @PostMapping("/customer/authenticate")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
     Authentication authentication = authenticationManager.authenticate(
@@ -72,11 +72,11 @@ public class AuthController {
     return ResponseEntity.ok(new JwtResponse(jwt, 
                          userDetails.getId(), 
                          userDetails.getUsername(), 
-                         userDetails.getEmail(), 
+                         userDetails.getFullname(), 
                          roles));
   }
 
-  @PostMapping("/signup")
+  @PostMapping("/register")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
     if (userRepository.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
@@ -84,22 +84,22 @@ public class AuthController {
           .body(new MessageResponse("Error: Username is already taken!"));
     }
 
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+    if (userRepository.existsByFullname(signUpRequest.getFullname())) {
       return ResponseEntity
           .badRequest()
-          .body(new MessageResponse("Error: Email is already in use!"));
+          .body(new MessageResponse("Error: Fullname is already in use!"));
     }
 
     // Create new user's account
     User user = new User(signUpRequest.getUsername(), 
-               signUpRequest.getEmail(),
+               signUpRequest.getFullname(),
                encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
     if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+      Role userRole = roleRepository.findByName(ERole.ROLE_CUSTOMER)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
     } else {
@@ -111,14 +111,14 @@ public class AuthController {
           roles.add(adminRole);
 
           break;
-        case "mod":
-          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+        case "staff":
+          Role modRole = roleRepository.findByName(ERole.ROLE_STAFF)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(modRole);
 
           break;
-        default:
-          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+        case "customer":
+          Role userRole = roleRepository.findByName(ERole.ROLE_CUSTOMER)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(userRole);
         }
