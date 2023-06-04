@@ -1,6 +1,4 @@
-package com.learning.BankingApplication.model;
-
-import com.learning.BankingApplication.entity.TransactionType;
+package com.learning.BankingApplication.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
