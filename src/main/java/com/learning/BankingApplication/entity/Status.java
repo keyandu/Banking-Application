@@ -1,4 +1,4 @@
-package com.learning.BankingApplication.model;
+package com.learning.BankingApplication.entity;
 
 public enum Status {
     Enable,

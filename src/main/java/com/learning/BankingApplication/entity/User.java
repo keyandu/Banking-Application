@@ -1,10 +1,10 @@
 package com.learning.BankingApplication.entity;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -27,6 +27,7 @@ public class User {
   @NotBlank
   @Size(max = 50)
   private String fullname;
+  // do not chack repeatcation
 
   @NotBlank
   @Size(max = 120)
@@ -39,6 +40,20 @@ public class User {
   
   private Set<Role> roles = new HashSet<>();
 
+    @OneToMany
+    private List<Account> accounts;
+    private String address;
+    private long mobileNo;
+
+    private String secretQuestion;
+    private String secretAnswer;
+    private Date createDate;
+    @OneToMany
+    private List<Beneficiary> beneficiary;
+    private Status customerStatus;
+    @OneToMany
+    private List<Transfer> transfers;
+  
   public User() {
   }
 
@@ -52,9 +67,6 @@ public class User {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public String getUsername() {
     return username;
@@ -87,4 +99,66 @@ public class User {
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
   }
+  
+    public Status getCustomerStatus() {
+        return customerStatus;
+    }
+
+    public void setCustomerStatus(Status customerStatus) {
+        this.customerStatus = customerStatus;
+    }
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public long getmobileNo() {
+        return mobileNo;
+    }
+
+    public void setmobileNo(long mobileNo) {
+        this.mobileNo= mobileNo;
+    }
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+
+    public String getSecretAnswer() {
+        return secretAnswer;
+    }
+
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public List<Beneficiary> getBeneficiary() {
+        return beneficiary;
+    }
+
+    public void setBeneficiary(List<Beneficiary> beneficiary) {
+        this.beneficiary = beneficiary;
+    }
 }
