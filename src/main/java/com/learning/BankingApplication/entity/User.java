@@ -68,8 +68,8 @@ public class User {
     return fullname;
   }
 
-  public void setFullname(String email) {
-    this.fullname = email;
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
   }
 
   public String getPassword() {
