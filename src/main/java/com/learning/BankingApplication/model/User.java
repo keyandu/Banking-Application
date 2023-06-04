@@ -80,8 +80,8 @@ public class User {
         return mobileNo;
     }
 
-    public void setmobileNo(long phone) {
-        this.mobileNo= phone;
+    public void setmobileNo(long mobileNo) {
+        this.mobileNo= mobileNo;
     }
 
     public String getPan() {
