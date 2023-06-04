@@ -18,7 +18,7 @@ public class User {
     @OneToMany
     private List<Account> accounts;
     private String address;
-    private long phone;
+    private long mobileNo;
     private String pan;
     private String secretQuestion;
     private String secretAnswer;
@@ -76,12 +76,12 @@ public class User {
         this.address = address;
     }
 
-    public long getPhone() {
-        return phone;
+    public long getmobileNo() {
+        return mobileNo;
     }
 
-    public void setPhone(long phone) {
-        this.phone = phone;
+    public void setmobileNo(long phone) {
+        this.mobileNo= phone;
     }
 
     public String getPan() {
@@ -137,7 +137,7 @@ public class User {
                 ", roles=" + roles +
                 ", accounts=" + accounts +
                 ", address='" + address + '\'' +
-                ", phone=" + phone +
+                ", mobileNo=" + mobileNo +
                 ", pan='" + pan + '\'' +
                 ", secretQuestion='" + secretQuestion + '\'' +
                 ", secretAnswer='" + secretAnswer + '\'' +
