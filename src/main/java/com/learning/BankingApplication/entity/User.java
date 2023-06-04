@@ -1,7 +1,4 @@
-package com.learning.BankingApplication.model;
-
-import com.learning.BankingApplication.entity.Roles;
-import com.learning.BankingApplication.entity.Status;
+package com.learning.BankingApplication.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

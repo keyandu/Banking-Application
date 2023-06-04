@@ -1,7 +1,4 @@
-package com.learning.BankingApplication.model;
-
-import com.learning.BankingApplication.entity.AccountType;
-import com.learning.BankingApplication.entity.Status;
+package com.learning.BankingApplication.entity;
 
 import javax.persistence.*;
 import java.util.Date;
