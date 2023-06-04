@@ -1,25 +1,50 @@
 package com.learning.BankingApplication.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Date;
-import java.util.List;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "users", 
+    uniqueConstraints = { 
+      @UniqueConstraint(columnNames = "username"),
+      @UniqueConstraint(columnNames = "fullname") 
+    })
+//uniqueConstraints = { @UniqueConstraint(columnNames = { "username", "email" })
 public class User {
-    @Id
-    @GeneratedValue
-    private long id;
-    private String password;
-    private String fullname;
-    private Roles roles;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @NotBlank
+  @Size(max = 20)
+  private String username;
+
+  @NotBlank
+  @Size(max = 50)
+  private String fullname;
+  // do not chack repeatcation
+
+  @NotBlank
+  @Size(max = 120)
+  private String password;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(  name = "user_roles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+  
+  private Set<Role> roles = new HashSet<>();
+
     @OneToMany
     private List<Account> accounts;
     private String address;
     private long mobileNo;
-    private String pan;
+
     private String secretQuestion;
     private String secretAnswer;
     private Date createDate;
@@ -28,6 +53,53 @@ public class User {
     private Status customerStatus;
     @OneToMany
     private List<Transfer> transfers;
+  
+  public User() {
+  }
+
+  public User(String username, String fullname, String password) {
+    this.username = username;
+    this.fullname = fullname;
+    this.password = password;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getFullname() {
+    return fullname;
+  }
+
+  public void setFullname(String email) {
+    this.fullname = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
+  
     public Status getCustomerStatus() {
         return customerStatus;
     }
@@ -35,31 +107,6 @@ public class User {
     public void setCustomerStatus(Status customerStatus) {
         this.customerStatus = customerStatus;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public Roles getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Roles roles) {
-        this.roles = roles;
-    }
-
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -83,15 +130,6 @@ public class User {
     public void setmobileNo(long mobileNo) {
         this.mobileNo= mobileNo;
     }
-
-    public String getPan() {
-        return pan;
-    }
-
-    public void setPan(String pan) {
-        this.pan = pan;
-    }
-
     public String getSecretQuestion() {
         return secretQuestion;
     }
@@ -122,28 +160,5 @@ public class User {
 
     public void setBeneficiary(List<Beneficiary> beneficiary) {
         this.beneficiary = beneficiary;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", roles=" + roles +
-                ", accounts=" + accounts +
-                ", address='" + address + '\'' +
-                ", mobileNo=" + mobileNo +
-                ", pan='" + pan + '\'' +
-                ", secretQuestion='" + secretQuestion + '\'' +
-                ", secretAnswer='" + secretAnswer + '\'' +
-                ", createDate=" + createDate +
-                ", beneficiary=" + beneficiary +
-                ", customerStatus=" + customerStatus +
-                '}';
     }
 }
