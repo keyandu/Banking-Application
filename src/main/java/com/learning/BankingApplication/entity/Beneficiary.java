@@ -40,8 +40,8 @@ public class Beneficiary {
         return customer;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setCustomer(User customer1) {
+        this.customer = customer1;
     }
 
     public String getAccountNo() {
