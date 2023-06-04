@@ -11,7 +11,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String password;
     private String fullname;
     private Roles roles;
@@ -23,7 +23,18 @@ public class User {
     private String secretQuestion;
     private String secretAnswer;
     private Date createDate;
+    @OneToMany
+    private List<Beneficiary> beneficiary;
+    private Status customerStatus;
+    @OneToMany
+    private List<Transfer> transfers;
+    public Status getCustomerStatus() {
+        return customerStatus;
+    }
 
+    public void setCustomerStatus(Status customerStatus) {
+        this.customerStatus = customerStatus;
+    }
 
     public String getPassword() {
         return password;
@@ -105,6 +116,18 @@ public class User {
         this.createDate = createDate;
     }
 
+    public List<Beneficiary> getBeneficiary() {
+        return beneficiary;
+    }
+
+    public void setBeneficiary(List<Beneficiary> beneficiary) {
+        this.beneficiary = beneficiary;
+    }
+
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -119,6 +142,8 @@ public class User {
                 ", secretQuestion='" + secretQuestion + '\'' +
                 ", secretAnswer='" + secretAnswer + '\'' +
                 ", createDate=" + createDate +
+                ", beneficiary=" + beneficiary +
+                ", customerStatus=" + customerStatus +
                 '}';
     }
 }

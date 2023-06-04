@@ -1,6 +1,6 @@
 package com.learning.BankingApplication.model;
 
-public enum AccountStatus {
+public enum Status {
     Enable,
     Disable
 }
