@@ -1,7 +1,10 @@
 package com.learning.BankingApplication.entity;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -61,6 +64,11 @@ public class User {
     this.username = username;
     this.fullname = fullname;
     this.password = password;
+    this.accounts = new ArrayList<Account>();
+    this.createDate = new Date();
+    this.beneficiary = new ArrayList<Beneficiary>();
+    this.customerStatus=Status.Disable;
+    this.transfers=new ArrayList<Transfer>();
   }
 
   public Long getId() {
