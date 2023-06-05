@@ -18,7 +18,7 @@ public class Beneficiary {
 
     private String accountNo;
     private Date beneficiaryAddDate;
-    private String Approved;
+    private String Approved="No";
 
     public String getBeneficiaryName() {
         return beneficiaryName;

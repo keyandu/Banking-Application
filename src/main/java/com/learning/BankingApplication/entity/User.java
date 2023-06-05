@@ -1,8 +1,10 @@
 package com.learning.BankingApplication.entity;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -42,11 +44,13 @@ public class User {
 
     @OneToMany
     private List<Account> accounts;
+
     private String address;
     private long mobileNo;
 
     private String secretQuestion;
     private String secretAnswer;
+
     private Date createDate;
     @OneToMany
     private List<Beneficiary> beneficiary;

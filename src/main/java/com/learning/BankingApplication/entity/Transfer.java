@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import static com.learning.BankingApplication.entity.Status.Disable;
+
 @Entity
 public class Transfer {
     @Id
@@ -16,10 +18,11 @@ public class Transfer {
     private long toAccountNo;
 
     private double amount;
+
     @ManyToOne
     private User byCustomer;
 
-    private Status transferStatus;
+    private Status transferStatus=Disable;
 
     public long getFromAccountNo() {
         return fromAccountNo;
