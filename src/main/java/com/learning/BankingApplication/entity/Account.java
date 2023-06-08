@@ -98,9 +98,6 @@ public class Account {
                 "accountNo=" + accountNo +
                 ", accountType=" + accountType +
                 ", accountBalance=" + accountBalance +
-                ", approved='" + approved + '\'' +
-                ", owner=" + owner +
-                ", createDate=" + createDate +
                 ", accountStatus=" + accountStatus +
                 '}';
     }

@@ -45,6 +45,7 @@ public class User {
 
     @OneToMany
     private List<Account> accounts;
+    
     private String address;
     private long mobileNo;
 
