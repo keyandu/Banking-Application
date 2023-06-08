@@ -9,8 +9,7 @@ public class AccountRequest {
 	private AccountType accountType;
 	@NotBlank
 	private double accountBalance;
-	@NotBlank
-	private String accountNo;
+	
 	
 	public AccountType getAccountType() {
 		return accountType;
@@ -24,10 +23,5 @@ public class AccountRequest {
 	public void setAccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
-	public String getAccountNo() {
-		return accountNo;
-	}
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
-	}
+
 }
