@@ -1,8 +1,10 @@
 package com.learning.BankingApplication.repo;
 
 import com.learning.BankingApplication.entity.Account;
+
 import com.learning.BankingApplication.entity.Approved;
 import org.springframework.data.domain.Example;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

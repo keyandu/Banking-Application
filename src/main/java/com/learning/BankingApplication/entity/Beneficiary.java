@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.UniqueElements;
+
 import java.util.Date;
 
 @Entity
@@ -11,12 +14,30 @@ public class Beneficiary {
     @Id
     @GeneratedValue
     private long beneficiaryAccountNo;
+    
+  
     private String beneficiaryName;
-    private BeneficiaryActive active;
+    public Beneficiary(String beneficiaryName, User customer,
+			String accountNo, Date beneficiaryAddDate) {
+		this.beneficiaryName = beneficiaryName;
+		this.active = BeneficiaryActive.YES;
+		this.customer = customer;
+		this.accountNo = accountNo;
+		this.beneficiaryAddDate = beneficiaryAddDate;
+		this.Approved = "NO";
+	}
+
+	private BeneficiaryActive active;
     @ManyToOne
     private User customer;
 
-    private String accountNo;
+    public Beneficiary() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    @UniqueElements
+	private String accountNo;
     private Date beneficiaryAddDate;
     private Approved approved= Approved.NO;
 

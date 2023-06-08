@@ -1,6 +1,9 @@
 package com.learning.BankingApplication.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,15 +11,24 @@ import java.util.List;
 public class Account {
     @Id
     @GeneratedValue
-    private long accountNo;
+    private long id;
+
+    private String accountNo;
     private AccountType accountType;
     private double accountBalance;
+
     private Approved approved;
+
     @ManyToOne
     private User owner;
     private Date createDate;
-    private Status accountStatus;
-    @OneToMany
+    private Status accountStatus=Status.Disable; //How to use this attribute? What is difference between account status and approve
+    public Account() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@OneToMany
     private List<Transaction> transactions;
 
     public AccountType getAccountType() {
@@ -74,9 +86,12 @@ public class Account {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-
-    public long getAccountNo() {
+    
+    public String getAccountNo() {
         return accountNo;
+    }
+    public long getId() {
+    	return this.id;
     }
 
     @Override
@@ -85,10 +100,18 @@ public class Account {
                 "accountNo=" + accountNo +
                 ", accountType=" + accountType +
                 ", accountBalance=" + accountBalance +
-                ", approved='" + approved + '\'' +
-                ", owner=" + owner +
-                ", createDate=" + createDate +
                 ", accountStatus=" + accountStatus +
                 '}';
     }
+
+	public Account(String accountNo, AccountType accountType, double accountBalance,User owner,
+			Date createDate) {
+		super();
+		this.accountNo = accountNo;
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+		this.owner = owner;
+		this.createDate = createDate;
+		this.transactions = new ArrayList<Transaction>();
+	}
 }
