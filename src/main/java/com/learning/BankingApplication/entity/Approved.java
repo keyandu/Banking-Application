@@ -1,4 +1,6 @@
 package com.learning.BankingApplication.entity;
 
-public class entity {
+public enum Approved {
+    YES,
+    NO
 }

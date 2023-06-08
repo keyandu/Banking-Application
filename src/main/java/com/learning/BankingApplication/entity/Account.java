@@ -16,7 +16,9 @@ public class Account {
     private String accountNo;
     private AccountType accountType;
     private double accountBalance;
-    private String approved="NO";
+
+    private Approved approved;
+
     @ManyToOne
     private User owner;
     private Date createDate;
@@ -45,11 +47,11 @@ public class Account {
         this.accountBalance = accountBalance;
     }
 
-    public String getApproved() {
+    public Approved getApproved() {
         return approved;
     }
 
-    public void setApproved(String approved) {
+    public void setApproved(Approved approved) {
         this.approved = approved;
     }
 
