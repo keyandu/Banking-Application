@@ -1,4 +1,4 @@
-package com.learning.BankingApplication.Config;
+package com.learning.BankingApplication.config;
 
 import com.learning.BankingApplication.stringToEnumConverter.*;
 import org.springframework.context.annotation.Configuration;

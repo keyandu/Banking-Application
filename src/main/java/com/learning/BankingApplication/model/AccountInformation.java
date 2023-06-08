@@ -8,11 +8,11 @@ import java.util.Date;
 public class AccountInformation {
     private AccountType accType;
     private String customerName;
-    private Long accNo;
+    private String accNo;
     private Date dateCreated;
     private Approved approved;
 
-    public AccountInformation(AccountType accType, String customerName, Long accNo, Date dateCreated, Approved approved) {
+    public AccountInformation(AccountType accType, String customerName, String accNo, Date dateCreated, Approved approved) {
         this.accType = accType;
         this.customerName = customerName;
         this.accNo = accNo;
@@ -39,11 +39,11 @@ public class AccountInformation {
         this.customerName = customerName;
     }
 
-    public Long getAccNo() {
+    public String getAccNo() {
         return accNo;
     }
 
-    public void setAccNo(Long accNo) {
+    public void setAccNo(String accNo) {
         this.accNo = accNo;
     }
 

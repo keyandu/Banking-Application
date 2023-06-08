@@ -3,6 +3,8 @@ package com.learning.BankingApplication.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,9 +14,13 @@ public class Account {
     @Id
     @GeneratedValue
     private long id;
-
+    
+    @NotBlank
+    @UniqueElements
     private String accountNo;
+    @NotBlank
     private AccountType accountType;
+    @NotBlank
     private double accountBalance;
 
     private Approved approved;

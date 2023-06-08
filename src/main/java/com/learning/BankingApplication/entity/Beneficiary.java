@@ -24,7 +24,7 @@ public class Beneficiary {
 		this.customer = customer;
 		this.accountNo = accountNo;
 		this.beneficiaryAddDate = beneficiaryAddDate;
-		this.Approved = "NO";
+		this.approved = Approved.NO;
 	}
 
 	private BeneficiaryActive active;
@@ -39,7 +39,7 @@ public class Beneficiary {
     @UniqueElements
 	private String accountNo;
     private Date beneficiaryAddDate;
-    private Approved approved= Approved.NO;
+    private Approved approved;
 
     public String getBeneficiaryName() {
         return beneficiaryName;
