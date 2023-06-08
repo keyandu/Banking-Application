@@ -39,5 +39,15 @@ public class AccountServiceImpl implements AccountService {
 		System.out.println("user saved");
 		return "created your account";
 	}
+	@Override
+	public List<Account> getAccountsByUser(Long id) {
+		// TODO Auto-generated method stub
+		User user = userDAO.findById(id).orElse(null);
+		return user.getAccounts();
+	}
+	@Override
+	public Account accountDetail(long id) {
+		return accountDAO.findById(id).orElse(null);
+	}
 	
 }
