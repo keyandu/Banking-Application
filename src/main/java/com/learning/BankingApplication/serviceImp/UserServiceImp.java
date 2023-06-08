@@ -24,7 +24,7 @@ public class UserServiceImp implements UserService {
     UserRepo userRepository;
     @Override
     public List<CustomerInformation> listAllCustomerByStaff() {
-        List<User> users = userRepository.findAll().orElseGet(null);
+        List<User> users = userRepository.findAll();
         List<CustomerInformation> result = new ArrayList<CustomerInformation>();
         if(users!=null){
             for(User user : users){
