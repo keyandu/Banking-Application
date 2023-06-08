@@ -5,6 +5,7 @@ import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
+import com.learning.BankingApplication.service.AccountService;
 import com.learning.BankingApplication.service.UserService;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ import java.util.List;
 public class StaffController {
     @Autowired
     UserService userService;
+    @Autowired
+    AccountService accountService;
 
     @GetMapping("/listAllCustomer")
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
@@ -44,6 +47,26 @@ public class StaffController {
             return new ResponseEntity(result, HttpStatus.OK);
         }
         return new ResponseEntity("Customer Not Found", HttpStatus.BAD_REQUEST);
+
+    }
+    @GetMapping("/getAllAccountToBeApproved")
+    public ResponseEntity getAllAccountToBeApprove(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+
+        return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/dispalyAllAccount")
+    public ResponseEntity dispalyAllAccount(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+
+        return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
+
+    }
+
+    @PutMapping("/approveAccountOrNot")
+    public ResponseEntity approveAccountOrNot(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+
+        return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
 
     }
 

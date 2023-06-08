@@ -14,5 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addConverter(new StringToTransactionTypeConverter());
         registry.addConverter(new StringToERoleConverter());
         registry.addConverter(new StringToBeneficiaryActiveConverter());
+        registry.addConverter(new StringToApprovedConverter());
     }
 }

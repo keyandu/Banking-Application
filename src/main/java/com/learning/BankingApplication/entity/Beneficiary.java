@@ -18,7 +18,7 @@ public class Beneficiary {
 
     private String accountNo;
     private Date beneficiaryAddDate;
-    private String Approved="No";
+    private Approved approved= Approved.NO;
 
     public String getBeneficiaryName() {
         return beneficiaryName;
@@ -60,12 +60,12 @@ public class Beneficiary {
         this.beneficiaryAddDate = beneficiaryAddDate;
     }
 
-    public String getApproved() {
-        return Approved;
+    public Approved getApproved() {
+        return approved;
     }
 
-    public void setApproved(String approved) {
-        Approved = approved;
+    public void setApproved(Approved approved) {
+        this.approved = approved;
     }
 
     public long getBeneficiaryAccountNo() {
@@ -81,7 +81,7 @@ public class Beneficiary {
                 ", customer=" + customer +
                 ", accountNo='" + accountNo + '\'' +
                 ", beneficiaryAddDate=" + beneficiaryAddDate +
-                ", Approved='" + Approved + '\'' +
+                ", Approved='" + approved + '\'' +
                 '}';
     }
 }

@@ -18,7 +18,7 @@ public class Transaction {
     @ManyToOne
     private Account account;
 
-    private String approved;
+    private Approved approved=Approved.NO;
 
     public Date getCreateDate() {
         return createDate;
@@ -55,11 +55,11 @@ public class Transaction {
 
 
 
-    public String getApproved() {
+    public Approved  getApproved() {
         return approved;
     }
 
-    public void setApproved(String approved) {
+    public void setApproved(Approved approved) {
         this.approved = approved;
     }
 
