@@ -4,6 +4,7 @@ import com.learning.BankingApplication.entity.Account;
 import com.learning.BankingApplication.entity.Approved;
 import com.learning.BankingApplication.model.AccountInformation;
 import com.learning.BankingApplication.repo.AccountRepo;
+import com.learning.BankingApplication.request.ApproveAccountRequest;
 import com.learning.BankingApplication.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,20 @@ public class AccountServiceImpl implements AccountService {
             result.add(new AccountInformation(a.getAccountType(),a.getOwner().getFullname(),a.getAccountNo(),a.getCreateDate(),a.getApproved()));
         }
         return result;
+    }
+
+    @Override
+    public boolean approveAccount(ApproveAccountRequest approveAccountRequest) {
+        Long accountNo = approveAccountRequest.getAccNo();
+        Account  account = accountRepo.getById(accountNo);
+        if(account==null){
+            return false;
+        }
+        if(!account.getAccountType().equals(approveAccountRequest.getAccType())||
+                !account.getOwner().getFullname().equals(approveAccountRequest.getCustomerName())
+        ){
+                //not finish
+        }
+        return false;
     }
 }

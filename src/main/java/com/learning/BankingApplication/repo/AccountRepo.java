@@ -13,4 +13,5 @@ public interface AccountRepo extends JpaRepository<Account,Long> {
 
     List<Account> findAllByApproved(Approved approved);
     List<Account> findAll();
+
 }

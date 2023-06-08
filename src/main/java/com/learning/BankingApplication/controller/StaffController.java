@@ -2,6 +2,7 @@ package com.learning.BankingApplication.controller;
 
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.repo.UserRepository;
+import com.learning.BankingApplication.request.ApproveAccountRequest;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
@@ -64,7 +65,7 @@ public class StaffController {
     }
 
     @PutMapping("/approveAccountOrNot")
-    public ResponseEntity approveAccountOrNot(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+    public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
         return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
 
