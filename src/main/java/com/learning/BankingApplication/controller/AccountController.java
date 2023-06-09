@@ -30,7 +30,7 @@ public class AccountController {
 	AccountService accoutServ;
 	
 	@PostMapping("/customer/{id}/create_account")
-	public String create(@Valid @PathVariable long id, @RequestBody AccountRequest acctReq) {
+	public String create(@PathVariable long id,@Valid @RequestBody AccountRequest acctReq) {
 		return accoutServ.create(id, acctReq);
 	}
 	

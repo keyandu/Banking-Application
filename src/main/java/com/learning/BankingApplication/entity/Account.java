@@ -16,7 +16,6 @@ public class Account {
     private long id;
     
     @NotBlank
-    @UniqueElements
     private String accountNo;
     @NotBlank
     private AccountType accountType;

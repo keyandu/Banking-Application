@@ -35,8 +35,7 @@ public class Beneficiary {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-    
-    @UniqueElements
+
 	private String accountNo;
     private Date beneficiaryAddDate;
     private Approved approved;
