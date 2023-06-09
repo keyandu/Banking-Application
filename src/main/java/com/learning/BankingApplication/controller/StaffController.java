@@ -32,8 +32,10 @@ public class StaffController {
         return new ResponseEntity(userService.listAllCustomerByStaff(), HttpStatus.OK);
     }
     @PutMapping("/changeCustomerStatus")
-    public ResponseEntity changeCustomerStatus(@RequestBody @Valid ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+    public ResponseEntity changeCustomerStatus(@RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+       // System.out.println(changeCustomerStatusRequest.getCustomerId());
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
+
         if(result.equals("Customer status not changed")||result.equals("customer not find")){
             return new ResponseEntity(result, HttpStatus.BAD_REQUEST);
         }
@@ -51,7 +53,7 @@ public class StaffController {
 
     }
     @GetMapping("/getAllAccountToBeApproved")
-    public ResponseEntity getAllAccountToBeApprove(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+    public ResponseEntity getAllAccountToBeApprove(@RequestBody GetCustomerByIdRequest getCustomerByIdRequest) {
 
         return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
 

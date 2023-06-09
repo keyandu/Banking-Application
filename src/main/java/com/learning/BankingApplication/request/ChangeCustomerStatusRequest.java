@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 public class ChangeCustomerStatusRequest {
     @NotNull
     @NotBlank
-    private long CustomerId;
+    private long customerId;
     @NotNull
     @NotBlank
     @Pattern(regexp = "Enable|Disable",message = "should enter Enable or Disable")
