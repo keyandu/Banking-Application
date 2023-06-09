@@ -29,10 +29,10 @@ public class StaffController {
 
     @GetMapping("/listAllCustomer")
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
-        return new ResponseEntity(userService.listAllCustomerByStaff(), HttpStatus.OK);
+        return new ResponseEntity<List<CustomerInformation>>(userService.listAllCustomerByStaff(), HttpStatus.OK);
     }
     @PutMapping("/changeCustomerStatus")
-    public ResponseEntity changeCustomerStatus(@RequestBody @Valid ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+    public ResponseEntity changeCustomerStatus(@Valid @RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
         if(result.equals("Customer status not changed")||result.equals("customer not find")){
             return new ResponseEntity(result, HttpStatus.BAD_REQUEST);

@@ -24,7 +24,7 @@ public class UserServiceImp implements UserService {
     UserRepo userRepository;
     @Override
     public List<CustomerInformation> listAllCustomerByStaff() {
-        List<User> users = userRepository.findAll().orElseGet(null);
+        List<User> users = userRepository.findAll();
         List<CustomerInformation> result = new ArrayList<CustomerInformation>();
         if(users!=null){
             for(User user : users){
@@ -44,18 +44,20 @@ public class UserServiceImp implements UserService {
 
     @Override
     public String changeCustomerStatus(ChangeCustomerStatusRequest changeCustomerStatusRequest) {
-        User customer = userRepository.getById(changeCustomerStatusRequest.getCustomerId());
+    	System.out.println(changeCustomerStatusRequest.getCustomerId());
+        User customer = userRepository.findById(changeCustomerStatusRequest.getCustomerId()).orElse(null);
         if(customer==null){
             return "customer not find";
         }
         Status newStatus = changeCustomerStatusRequest.getStatus();
-
-                try{
-                    customer.setCustomerStatus(newStatus);
-                    userRepository.saveAndFlush(customer);
-                }catch (Exception e){
-                    return "Customer status not changed";
-                }
+ 
+        System.out.println(customer);
+        try{
+            customer.setCustomerStatus(newStatus);
+            userRepository.saveAndFlush(customer);
+        }catch (Exception e){
+            return "Customer status not changed";
+        }
 
 
         return "success";
