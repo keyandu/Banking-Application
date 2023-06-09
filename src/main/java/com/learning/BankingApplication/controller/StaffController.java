@@ -31,6 +31,7 @@ public class StaffController {
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
         return new ResponseEntity<List<CustomerInformation>>(userService.listAllCustomerByStaff(), HttpStatus.OK);
     }
+    //Not Working
     @PutMapping("/changeCustomerStatus")
     public ResponseEntity changeCustomerStatus(@Valid @RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
@@ -40,7 +41,7 @@ public class StaffController {
         return new ResponseEntity("enable Customer success", HttpStatus.OK);
     }
 
-
+    
     @GetMapping("/getCustomerById")
     public ResponseEntity getCustomerById(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
         GetCustomerByIdResponse result = userService.getCustomerById(getCustomerByIdRequest);
@@ -51,19 +52,20 @@ public class StaffController {
 
     }
     @GetMapping("/getAllAccountToBeApproved")
-    public ResponseEntity getAllAccountToBeApprove(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+    public ResponseEntity getAllAccountToBeApprove() {
 
         return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
 
     }
-
+    
     @GetMapping("/dispalyAllAccount")
-    public ResponseEntity dispalyAllAccount(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+    public ResponseEntity dispalyAllAccount() {
 
         return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
 
     }
-
+    
+    //Not Working
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
