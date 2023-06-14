@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.learning.BankingApplication.entity.Beneficiary;
 import com.learning.BankingApplication.entity.User;
 import com.learning.BankingApplication.payload.request.BeneficiaryRequest;
+import com.learning.BankingApplication.payload.response.BeneficiaryResponse;
 import com.learning.BankingApplication.repo.BeneficiaryRepo;
 import com.learning.BankingApplication.repo.UserRepo;
 @Service
@@ -40,6 +41,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		return "addBene successfully";
 	}
 	@Override
+
 	public List<BeneficiaryInformation> listAllBeneficiaryToBeApproved() {
 		List<Beneficiary> beneficiaries =beneDAO.findBeneficiariesByApproved(Approved.NO);
 
@@ -68,4 +70,18 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		}
 		return null;
 	}
+
+	public List<BeneficiaryResponse> getBeneByCustomer(long userid) {
+		// TODO Auto-generated method stub
+		User user = userDAO.findById(userid).orElse(null);
+		List<Beneficiary> beneList = user.getBeneficiary();
+		List<BeneficiaryResponse> res = new ArrayList<BeneficiaryResponse>();
+		for (Beneficiary beneficiary : beneList) {
+			res.add(new BeneficiaryResponse(beneficiary.getAccountNo(),beneficiary.getBeneficiaryName()
+					,beneficiary.getActive()));
+		}
+		return res;
+	}
+	
+
 }

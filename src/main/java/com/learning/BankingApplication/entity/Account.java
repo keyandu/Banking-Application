@@ -1,6 +1,7 @@
 package com.learning.BankingApplication.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.UniqueElements;
@@ -9,17 +10,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import java.math.BigInteger;
+import java.util.UUID;
 @Entity
 public class Account {
     @Id
     @GeneratedValue
     private long id;
-    
-    //@NotBlank
+
+
     private String accountNo;
-   // @NotBlank
+
     private AccountType accountType;
-    //@NotBlank
+
     private double accountBalance;
 
     private Approved approved;
@@ -109,14 +112,25 @@ public class Account {
                 '}';
     }
 
-	public Account(String accountNo, AccountType accountType, double accountBalance,User owner,
+	public Account(AccountType accountType, double accountBalance,User owner,
 			Date createDate) {
 		super();
-		this.accountNo = accountNo;
+		String generateUUIDNo = String.format("%010d",new BigInteger(UUID.randomUUID().toString().replace("-",""),16));
+		 
+        // To decide length of unique positive long number
+        // generateUUIDNo.length() - uniqueNoSize is being
+        // used
+        String unique_no = generateUUIDNo.substring( generateUUIDNo.length() - 12);
+        System.out.println(unique_no);
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;
 		this.owner = owner;
 		this.createDate = createDate;
 		this.transactions = new ArrayList<Transaction>();
+		this.approved = Approved.NO;
+		this.accountNo=unique_no;
+		
 	}
+
+
 }

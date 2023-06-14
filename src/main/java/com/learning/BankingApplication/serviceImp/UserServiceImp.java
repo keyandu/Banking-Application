@@ -45,8 +45,10 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+
     public String changeCustomerStatus(@Valid @RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
         User customer = userRepository.getById(changeCustomerStatusRequest.getCustomerId());
+
         if(customer==null){
             return "customer not find";
         }
@@ -58,8 +60,6 @@ public class UserServiceImp implements UserService {
                 }catch (Exception e){
                     return "Customer status not changed";
                 }
-
-
         return "success";
     }
 

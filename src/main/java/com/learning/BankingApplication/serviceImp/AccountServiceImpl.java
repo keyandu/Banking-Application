@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 		User user = userDAO.findById(userid).orElse(null);
 		System.out.println("find user");
 		
-		Account acct = new Account(c.getAccountNo(),c.getAccountType(),c.getAccountBalance(),user,new Date());
+		Account acct = new Account(c.getAccountType(),c.getAccountBalance(),user,new Date());
 		accountRepo.save(acct);
 		System.out.println("account created");
 		

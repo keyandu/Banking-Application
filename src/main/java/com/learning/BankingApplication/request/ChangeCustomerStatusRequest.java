@@ -12,8 +12,10 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangeCustomerStatusRequest {
+
     @NotNull
     @NotBlank
+
     private long customerId;
     @NotNull
     @NotBlank

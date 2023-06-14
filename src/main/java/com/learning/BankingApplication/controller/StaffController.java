@@ -35,11 +35,14 @@ public class StaffController {
 
     @GetMapping("/listAllCustomer")
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
-        return new ResponseEntity(userService.listAllCustomerByStaff(), HttpStatus.OK);
+        return new ResponseEntity<List<CustomerInformation>>(userService.listAllCustomerByStaff(), HttpStatus.OK);
     }
+    //Not Working
     @PutMapping("/changeCustomerStatus")
+
     public ResponseEntity changeCustomerStatus(@RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
        // System.out.println(changeCustomerStatusRequest.getCustomerId());
+
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
 
         if(result.equals("Customer status not changed")||result.equals("customer not find")){
@@ -48,7 +51,7 @@ public class StaffController {
         return new ResponseEntity("enable Customer success", HttpStatus.OK);
     }
 
-
+    
     @GetMapping("/getCustomerById")
     public ResponseEntity getCustomerById(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
         GetCustomerByIdResponse result = userService.getCustomerById(getCustomerByIdRequest);
@@ -59,19 +62,21 @@ public class StaffController {
 
     }
     @GetMapping("/getAllAccountToBeApproved")
-    public ResponseEntity getAllAccountToBeApprove(@RequestBody GetCustomerByIdRequest getCustomerByIdRequest) {
+
+    public ResponseEntity getAllAccountToBeApprove() {
 
         return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
 
     }
-
+    
     @GetMapping("/dispalyAllAccount")
-    public ResponseEntity dispalyAllAccount(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
+    public ResponseEntity dispalyAllAccount() {
 
         return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
 
     }
-
+    
+    //Not Working
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
