@@ -60,21 +60,20 @@ public class AccountServiceImpl implements AccountService {
 	public String create(long userid, AccountRequest c) {
 		// TODO Auto-generated method stub
 		User user = userDAO.findById(userid).orElse(null);
-		System.out.println("find user");
 		
 		Account acct = new Account(c.getAccountType(),c.getAccountBalance(),user,new Date());
 		accountRepo.save(acct);
-		System.out.println("account created");
+	
 		
 		List<Account> lisAcct = user.getAccounts();
 		if(lisAcct ==null) lisAcct=new ArrayList<Account>();
-		System.out.println("account gets");
+		
 		lisAcct.add(acct);
 		
 		user.setAccounts(lisAcct);
-		System.out.println("account sets");
+		
 		userDAO.save(user);
-		System.out.println("user saved");
+		
 		return "created your account";
 	}
 	@Override
