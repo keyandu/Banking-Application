@@ -15,11 +15,11 @@ public class Account {
     @GeneratedValue
     private long id;
     
-    @NotBlank
+    //@NotBlank
     private String accountNo;
-    @NotBlank
+   // @NotBlank
     private AccountType accountType;
-    @NotBlank
+    //@NotBlank
     private double accountBalance;
 
     private Approved approved;

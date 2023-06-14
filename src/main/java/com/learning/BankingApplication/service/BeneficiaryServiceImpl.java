@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.learning.BankingApplication.entity.Approved;
+import com.learning.BankingApplication.model.BeneficiaryInformation;
+import com.learning.BankingApplication.request.ApproveBeneficiaryRequest;
+import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,9 @@ import com.learning.BankingApplication.repo.UserRepo;
 public class BeneficiaryServiceImpl implements BeneficiaryService{
 	@Autowired
 	UserRepo userDAO;
+
+
+
 	@Autowired
 	BeneficiaryRepo beneDAO;
 	@Override
@@ -32,5 +39,33 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		
 		return "addBene successfully";
 	}
-	
+	@Override
+	public List<BeneficiaryInformation> listAllBeneficiaryToBeApproved() {
+		List<Beneficiary> beneficiaries =beneDAO.findBeneficiariesByApproved(Approved.NO);
+
+		List<BeneficiaryInformation> result = new ArrayList<BeneficiaryInformation>();
+		for(Beneficiary b :beneficiaries){
+			BeneficiaryInformation bi = new BeneficiaryInformation();
+			bi.setApproved(Approved.NO);
+			bi.setBeneficiaryAcNo(b.getBeneficiaryAccountNo());
+			bi.setBeneficiaryAddedDate(b.getBeneficiaryAddDate());
+			bi.setFromCustomer(b.getCustomer().getId());
+			result.add(bi);
+		}
+ 		return result;
+	}
+
+	@Override
+	public ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest) {
+		Beneficiary beneficiary = beneDAO.getById(approveBeneficiaryRequest.getBeneficiaryAcNo());
+		if(beneficiary==null){
+			return null;
+		}else{
+			if(approveBeneficiaryRequest.getFromCustomer()==beneficiary.getCustomer().getId()){
+
+			}
+			// not finished
+		}
+		return null;
+	}
 }

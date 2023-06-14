@@ -1,12 +1,16 @@
 package com.learning.BankingApplication.controller;
 
+import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ApproveAccountRequest;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
+
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
+
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.AccountService;
+import com.learning.BankingApplication.service.BeneficiaryService;
 import com.learning.BankingApplication.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,8 @@ public class StaffController {
     UserService userService;
     @Autowired
     AccountService accountService;
+    @Autowired
+    BeneficiaryService beneficiaryService;
 
     @GetMapping("/listAllCustomer")
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
@@ -69,8 +75,26 @@ public class StaffController {
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
-        return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
+        if(accountService.approveAccount(approveAccountRequest)){
+            return new ResponseEntity("APPROVED SUCCESSFUL", HttpStatus.OK);
+        }
+        return new ResponseEntity("approved failed", HttpStatus.BAD_REQUEST);
 
     }
 
+    @GetMapping("/getAccountStatmentById")
+    public ResponseEntity getAccountStatmentById(@RequestBody long id){
+        return new ResponseEntity(accountService.accountDetail(id),HttpStatus.OK);
+
+    }
+    @GetMapping("/listBeneficiaryToBeApproved")
+    public ResponseEntity<List<BeneficiaryInformation>> listBeneficiaryToBeApproved(){
+        return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
+
+    }
+//    @PutMapping("/approveBeneficiaryOrNot")
+//    public ResponseEntity approveBeneficiaryOrNot(){
+//      //  return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
+//
+//    }
 }

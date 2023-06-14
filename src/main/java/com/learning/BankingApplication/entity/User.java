@@ -59,6 +59,7 @@ public class User {
     @OneToMany
     private List<Beneficiary> beneficiary;
     private Status customerStatus;
+    private Status staffStatus;
     @OneToMany
     private List<Transfer> transfers;
   
@@ -74,6 +75,15 @@ public class User {
     this.beneficiary = new ArrayList<Beneficiary>();
     this.customerStatus=Status.Disable;
     this.transfers=new ArrayList<Transfer>();
+    this.staffStatus=Status.Disable;
+  }
+
+  public Status getStaffStatus() {
+    return staffStatus;
+  }
+
+  public void setStaffStatus(Status staffStatus) {
+    this.staffStatus = staffStatus;
   }
 
   public Long getId() {
