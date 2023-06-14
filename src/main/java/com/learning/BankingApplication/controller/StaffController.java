@@ -1,14 +1,18 @@
 package com.learning.BankingApplication.controller;
 
+import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ApproveAccountRequest;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
+
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
+
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.AccountService;
+import com.learning.BankingApplication.service.BeneficiaryService;
 import com.learning.BankingApplication.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +30,8 @@ public class StaffController {
     UserService userService;
     @Autowired
     AccountService accountService;
+    @Autowired
+    BeneficiaryService beneficiaryService;
 
     @GetMapping("/listAllCustomer")
     public ResponseEntity<List<CustomerInformation>> listAllCustomer() {
@@ -33,8 +39,12 @@ public class StaffController {
     }
     //Not Working
     @PutMapping("/changeCustomerStatus")
-    public ResponseEntity changeCustomerStatus(@Valid @RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+
+    public ResponseEntity changeCustomerStatus(@RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+       // System.out.println(changeCustomerStatusRequest.getCustomerId());
+
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
+
         if(result.equals("Customer status not changed")||result.equals("customer not find")){
             return new ResponseEntity(result, HttpStatus.BAD_REQUEST);
         }
@@ -52,6 +62,7 @@ public class StaffController {
 
     }
     @GetMapping("/getAllAccountToBeApproved")
+
     public ResponseEntity getAllAccountToBeApprove() {
 
         return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
@@ -69,8 +80,26 @@ public class StaffController {
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
-        return new ResponseEntity(accountService.listAllAccount(), HttpStatus.OK);
+        if(accountService.approveAccount(approveAccountRequest)){
+            return new ResponseEntity("APPROVED SUCCESSFUL", HttpStatus.OK);
+        }
+        return new ResponseEntity("approved failed", HttpStatus.BAD_REQUEST);
 
     }
 
+    @GetMapping("/getAccountStatmentById")
+    public ResponseEntity getAccountStatmentById(@RequestBody long id){
+        return new ResponseEntity(accountService.accountDetail(id),HttpStatus.OK);
+
+    }
+    @GetMapping("/listBeneficiaryToBeApproved")
+    public ResponseEntity<List<BeneficiaryInformation>> listBeneficiaryToBeApproved(){
+        return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
+
+    }
+//    @PutMapping("/approveBeneficiaryOrNot")
+//    public ResponseEntity approveBeneficiaryOrNot(){
+//      //  return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
+//
+//    }
 }

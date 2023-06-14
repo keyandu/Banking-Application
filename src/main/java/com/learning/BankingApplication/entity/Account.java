@@ -17,11 +17,12 @@ public class Account {
     @Id
     @GeneratedValue
     private long id;
-    
+
 
     private String accountNo;
 
     private AccountType accountType;
+
     private double accountBalance;
 
     private Approved approved;
