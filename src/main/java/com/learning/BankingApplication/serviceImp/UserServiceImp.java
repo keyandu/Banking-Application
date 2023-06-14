@@ -13,7 +13,9 @@ import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -43,23 +45,21 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public String changeCustomerStatus(ChangeCustomerStatusRequest changeCustomerStatusRequest) {
-    	System.out.println(changeCustomerStatusRequest.getCustomerId());
-        User customer = userRepository.findById(changeCustomerStatusRequest.getCustomerId()).orElse(null);
+
+    public String changeCustomerStatus(@Valid @RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+        User customer = userRepository.getById(changeCustomerStatusRequest.getCustomerId());
+
         if(customer==null){
             return "customer not find";
         }
         Status newStatus = changeCustomerStatusRequest.getStatus();
- 
-        System.out.println(customer);
-        try{
-            customer.setCustomerStatus(newStatus);
-            userRepository.saveAndFlush(customer);
-        }catch (Exception e){
-            return "Customer status not changed";
-        }
 
-
+                try{
+                    customer.setCustomerStatus(newStatus);
+                    userRepository.save(customer);
+                }catch (Exception e){
+                    return "Customer status not changed";
+                }
         return "success";
     }
 

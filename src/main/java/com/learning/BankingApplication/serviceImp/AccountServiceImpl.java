@@ -49,10 +49,12 @@ public class AccountServiceImpl implements AccountService {
         if(account==null){
             return false;
         }
-        if(!account.getAccountType().equals(approveAccountRequest.getAccType())||
-                !account.getOwner().getFullname().equals(approveAccountRequest.getCustomerName())
+        if(account.getAccountType().equals(approveAccountRequest.getAccType())&&
+                account.getOwner().getFullname().equals(approveAccountRequest.getCustomerName())
         ){
-                //not finish
+            account.setApproved(Approved.YES);
+            accountRepo.save(account);
+            return true;
         }
         return false;
     }

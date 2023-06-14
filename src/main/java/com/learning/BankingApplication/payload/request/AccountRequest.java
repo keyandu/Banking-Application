@@ -1,16 +1,33 @@
 package com.learning.BankingApplication.payload.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import com.learning.BankingApplication.entity.AccountType;
 
 public class AccountRequest {
-	@NotBlank
+	//@NotBlank
+	//@Pattern(regexp = "SB|CA",message = "should enter SB or CA")
 	private AccountType accountType;
-	@NotBlank
+	//@NotBlank
 	private double accountBalance;
-	
-	
+
+	@NotNull
+	//@NotBlank
+
+	private String accountNo;
+
+	public AccountRequest(AccountType accountType, double accountBalance, String accountNo) {
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+		this.accountNo = accountNo;
+	}
+
+	public AccountRequest() {
+	}
+
+
 	public AccountType getAccountType() {
 		return accountType;
 	}

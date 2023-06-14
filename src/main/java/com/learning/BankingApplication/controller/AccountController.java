@@ -21,6 +21,7 @@ import com.learning.BankingApplication.payload.response.AccountDetailResponse;
 import com.learning.BankingApplication.payload.response.AccountResponse;
 import com.learning.BankingApplication.payload.response.TransactionResponse;
 import com.learning.BankingApplication.service.AccountService;
+import java.lang.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -30,7 +31,7 @@ public class AccountController {
 	AccountService accoutServ;
 	
 	@PostMapping("/customer/{id}/create_account")
-	public String create(@Valid @PathVariable long id, @RequestBody AccountRequest acctReq) {
+	public String create(@PathVariable long id,@Valid @RequestBody AccountRequest acctReq) {
 		return accoutServ.create(id, acctReq);
 	}
 	

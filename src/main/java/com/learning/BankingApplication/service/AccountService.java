@@ -3,6 +3,9 @@ package com.learning.BankingApplication.service;
 import java.util.List;
 
 
+
+import org.springframework.stereotype.Service;
+
 import com.learning.BankingApplication.model.AccountInformation;
 import com.learning.BankingApplication.request.ApproveAccountRequest;
 import com.learning.BankingApplication.entity.Account;

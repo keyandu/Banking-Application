@@ -35,7 +35,7 @@ public class Beneficiary {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-    
+
 
 	private String accountNo;
     private Date beneficiaryAddDate;
