@@ -4,10 +4,12 @@ import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ApproveAccountRequest;
+import com.learning.BankingApplication.request.ApproveBeneficiaryRequest;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
 
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 
+import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.AccountService;
 import com.learning.BankingApplication.service.BeneficiaryService;
@@ -76,7 +78,7 @@ public class StaffController {
 
     }
     
-    //Not Working
+
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
 
@@ -97,9 +99,13 @@ public class StaffController {
         return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
 
     }
-//    @PutMapping("/approveBeneficiaryOrNot")
-//    public ResponseEntity approveBeneficiaryOrNot(){
-//      //  return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
-//
-//    }
+    @PutMapping("/approveBeneficiaryOrNot")
+    public ResponseEntity approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest){
+        ApproveBeneficiaryResponse result= beneficiaryService.approveBeneficiaryOrNot(approveBeneficiaryRequest);
+        if(result==null){
+            return  new ResponseEntity("Sorry beneficiary not approved",HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(result,HttpStatus.OK);
+
+    }
 }
