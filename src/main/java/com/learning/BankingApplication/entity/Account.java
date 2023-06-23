@@ -1,4 +1,4 @@
-package com.learning.BankingApplication.entity;
+	package com.learning.BankingApplication.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

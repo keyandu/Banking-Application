@@ -2,6 +2,7 @@ package com.learning.BankingApplication.serviceImp;
 
 import com.learning.BankingApplication.entity.Account;
 import com.learning.BankingApplication.entity.Approved;
+import com.learning.BankingApplication.entity.Transaction;
 import com.learning.BankingApplication.entity.User;
 import com.learning.BankingApplication.model.AccountInformation;
 import com.learning.BankingApplication.payload.request.AccountRequest;
@@ -87,4 +88,13 @@ public class AccountServiceImpl implements AccountService {
 	public Account accountDetail(long id) {
 		return accountRepo.findById(id).orElse(null);
 	}
+
+//	@Override
+//	public String viewAccountStatement(Account account) {
+//		
+//		List<Transaction> t = account.getTransactions();
+//		
+//		
+//		return null;
+//	}
 }

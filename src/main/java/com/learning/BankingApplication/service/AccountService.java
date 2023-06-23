@@ -10,6 +10,7 @@ import com.learning.BankingApplication.payload.request.AccountRequest;
 
 
 public interface AccountService {
+	
 	public String create(long userid, AccountRequest accountReq);
 
 	public List<Account> getAccountsByUser(Long id);
@@ -22,5 +23,4 @@ public interface AccountService {
   
 	public boolean approveAccount(ApproveAccountRequest approveAccountRequest);
 	
-
 }

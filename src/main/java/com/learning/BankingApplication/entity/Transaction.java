@@ -20,6 +20,19 @@ public class Transaction {
 
     private Approved approved=Approved.NO;
 
+
+    public Transaction(long id, Date createDate, String reference, double amount, TransactionType transactionType,
+			Account account, Approved approved) {
+		super();
+		this.id = id;
+		this.createDate = createDate;
+		this.reference = reference;
+		this.amount = amount;
+		this.transactionType = transactionType;
+		this.account = account;
+		this.approved = approved;
+	}
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -52,10 +65,7 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
-
-
-
-    public Approved  getApproved() {
+	public Approved  getApproved() {
         return approved;
     }
 
