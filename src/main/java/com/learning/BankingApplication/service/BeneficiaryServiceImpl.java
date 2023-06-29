@@ -9,12 +9,14 @@ import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.request.ApproveBeneficiaryRequest;
 import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.learning.BankingApplication.entity.Beneficiary;
 import com.learning.BankingApplication.entity.User;
 import com.learning.BankingApplication.payload.request.BeneficiaryRequest;
 import com.learning.BankingApplication.payload.response.BeneficiaryResponse;
+import com.learning.BankingApplication.payload.response.MessageResponse;
 import com.learning.BankingApplication.repo.BeneficiaryRepo;
 import com.learning.BankingApplication.repo.UserRepo;
 @Service
@@ -27,9 +29,10 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	@Autowired
 	BeneficiaryRepo beneDAO;
 	@Override
-	public String addBene(long userid, BeneficiaryRequest beneReq) {
+	public ResponseEntity<?> addBene(long userid, BeneficiaryRequest beneReq) {
 
 		User user = userDAO.findById(userid).orElse(null);
+		if(user==null) return ResponseEntity.ok(new MessageResponse("User not found"));
 		List<Beneficiary> beneList = new ArrayList<Beneficiary>();
 		
 		beneList=user.getBeneficiary();
@@ -38,7 +41,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		beneList.add(bene);
 		userDAO.save(user);
 		
-		return "addBene successfully";
+		return ResponseEntity.ok(new MessageResponse("addBene successfully"));
 	}
 	@Override
 
@@ -74,6 +77,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	public List<BeneficiaryResponse> getBeneByCustomer(long userid) {
 		// TODO Auto-generated method stub
 		User user = userDAO.findById(userid).orElse(null);
+		if(user==null) return null;
 		List<Beneficiary> beneList = user.getBeneficiary();
 		List<BeneficiaryResponse> res = new ArrayList<BeneficiaryResponse>();
 		for (Beneficiary beneficiary : beneList) {

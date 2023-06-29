@@ -12,14 +12,24 @@ public class SignupRequest {
   @NotBlank
   @Size(max = 50)
   private String fullname;
-
+  @NotBlank(message = "Email cannot be empty")
+  @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+  private String email;
   private Set<String> role;
 
   @NotBlank
   @Size(min = 6, max = 40)
   private String password;
 
-  public String getUsername() {
+  public String getEmail() {
+	return email;
+}
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
+public String getUsername() {
     return username;
   }
 

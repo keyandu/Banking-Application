@@ -2,6 +2,8 @@ package com.learning.BankingApplication.entity;
 
 
 
+
+
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -11,8 +13,11 @@ import java.util.Set;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+
 
 @Entity
 @Table(name = "users", 
@@ -39,26 +44,63 @@ public class User {
   @Size(max = 120)
   private String password;
 
-  @ManyToMany(fetch = FetchType.LAZY)
+  public long getMobileNo() {
+	return mobileNo;
+}
+
+public void setMobileNo(long mobileNo) {
+	this.mobileNo = mobileNo;
+}
+
+@ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(  name = "user_roles", 
         joinColumns = @JoinColumn(name = "user_id"), 
         inverseJoinColumns = @JoinColumn(name = "role_id"))
   
   private Set<Role> roles = new HashSet<>();
 
-    @OneToMany
+  	@OneToOne
+  	private PasswordResetToken passwordResetToken;
+  
+    public PasswordResetToken getPasswordResetToken() {
+		return passwordResetToken;
+	}
+
+	public void setPasswordResetToken(PasswordResetToken passwordResetToken) {
+		this.passwordResetToken = passwordResetToken;
+	}
+
+
+	public List<Transfer> getTransfers() {
+		return transfers;
+	}
+
+	public void setTransfers(List<Transfer> transfers) {
+		this.transfers = transfers;
+	}
+
+	@OneToMany
     private List<Account> accounts;
 
     private String address;
     private long mobileNo;
-
-    private String secretQuestion;
-    private String secretAnswer;
+    
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    private String email;
 
     private Date createDate;
     @OneToMany
     private List<Beneficiary> beneficiary;
-    private Status customerStatus;
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private Status customerStatus;
     private Status staffStatus;
     @OneToMany
     private List<Transfer> transfers;
@@ -66,10 +108,11 @@ public class User {
   public User() {
   }
 
-  public User(String username, String fullname, String password) {
+  public User(String username, String fullname, String email, String password) {
     this.username = username;
     this.fullname = fullname;
     this.password = password;
+    this.email = email;
     this.accounts = new ArrayList<Account>();
     this.createDate = new Date();
     this.beneficiary = new ArrayList<Beneficiary>();
@@ -146,28 +189,13 @@ public class User {
         this.address = address;
     }
 
-    public long getmobileNo() {
-        return mobileNo;
-    }
-
+ 
     public void setmobileNo(long mobileNo) {
         this.mobileNo= mobileNo;
     }
-    public String getSecretQuestion() {
-        return secretQuestion;
-    }
+   
 
-    public void setSecretQuestion(String secretQuestion) {
-        this.secretQuestion = secretQuestion;
-    }
-
-    public String getSecretAnswer() {
-        return secretAnswer;
-    }
-
-    public void setSecretAnswer(String secretAnswer) {
-        this.secretAnswer = secretAnswer;
-    }
+    
 
     public Date getCreateDate() {
         return createDate;

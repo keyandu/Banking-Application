@@ -2,8 +2,7 @@ package com.learning.BankingApplication.service;
 
 import java.util.List;
 
-
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.learning.BankingApplication.model.AccountInformation;
@@ -13,7 +12,7 @@ import com.learning.BankingApplication.payload.request.AccountRequest;
 
 
 public interface AccountService {
-	public String create(long userid, AccountRequest accountReq);
+	public ResponseEntity<?> create(long userid, AccountRequest accountReq);
 
 	public List<Account> getAccountsByUser(Long id);
 
@@ -23,7 +22,7 @@ public interface AccountService {
   
 	public List<AccountInformation> listAllAccount();
   
-	public boolean approveAccount(ApproveAccountRequest approveAccountRequest);
+	public String approveAccount(ApproveAccountRequest approveAccountRequest);
 	
 
 }

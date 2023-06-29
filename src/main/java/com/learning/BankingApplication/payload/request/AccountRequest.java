@@ -13,15 +13,10 @@ public class AccountRequest {
 	//@NotBlank
 	private double accountBalance;
 
-	@NotNull
-	//@NotBlank
 
-	private String accountNo;
-
-	public AccountRequest(AccountType accountType, double accountBalance, String accountNo) {
+	public AccountRequest(AccountType accountType, double accountBalance) {
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;
-		this.accountNo = accountNo;
 	}
 
 	public AccountRequest() {

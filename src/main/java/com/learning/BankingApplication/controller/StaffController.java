@@ -48,7 +48,7 @@ public class StaffController {
         if(result.equals("Customer status not changed")||result.equals("customer not find")){
             return new ResponseEntity(result, HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity("enable Customer success", HttpStatus.OK);
+        return new ResponseEntity("Change customer status success", HttpStatus.OK);
     }
 
     
@@ -79,11 +79,13 @@ public class StaffController {
     //Not Working
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
-
-        if(accountService.approveAccount(approveAccountRequest)){
-            return new ResponseEntity("APPROVED SUCCESSFUL", HttpStatus.OK);
+    	String msg = accountService.approveAccount(approveAccountRequest);
+        if(msg==null){
+        	return new ResponseEntity("Account not found, approved failed", HttpStatus.BAD_REQUEST);
+            
         }
-        return new ResponseEntity("approved failed", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(msg, HttpStatus.OK);
+        
 
     }
 

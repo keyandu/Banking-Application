@@ -7,12 +7,13 @@ import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 
 import com.learning.BankingApplication.payload.request.BeneficiaryRequest;
 import com.learning.BankingApplication.payload.response.BeneficiaryResponse;
 
 public interface BeneficiaryService {
-	String addBene(long userid, BeneficiaryRequest beneReq);
+	ResponseEntity<?> addBene(long userid, BeneficiaryRequest beneReq);
 	List<BeneficiaryInformation> listAllBeneficiaryToBeApproved();
 	ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest);
 
