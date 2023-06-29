@@ -4,6 +4,7 @@ import com.learning.BankingApplication.entity.User;
 
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
+import com.learning.BankingApplication.request.ChangeStaffStatusRequest;
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 
@@ -16,4 +17,11 @@ public interface UserService {
    public String changeCustomerStatus(ChangeCustomerStatusRequest changeCustomerStatusRequest);
 
    public GetCustomerByIdResponse getCustomerById(GetCustomerByIdRequest getCustomerByIdRequest);
+
+   public boolean existsByUsername(String username);
+
+   public void save(User user);
+   public List<CustomerInformation> listAllStaffByAdmin();
+
+   public String enableOrDisableStaff(ChangeStaffStatusRequest changeStaffStatusRequest);
 }

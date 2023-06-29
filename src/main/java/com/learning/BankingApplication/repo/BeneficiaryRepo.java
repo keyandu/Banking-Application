@@ -12,5 +12,6 @@ import java.util.List;
 @Repository
 public interface BeneficiaryRepo extends JpaRepository<Beneficiary,Long> {
     List<Beneficiary> findBeneficiariesByApproved(Approved approved);
+    Beneficiary getBeneficiaryByBeneficiaryAccountNo(String accountNo);
 
 }

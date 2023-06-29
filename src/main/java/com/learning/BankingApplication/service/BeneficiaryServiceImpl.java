@@ -60,15 +60,23 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	@Override
 	public ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest) {
 		Beneficiary beneficiary = beneDAO.getById(approveBeneficiaryRequest.getBeneficiaryAcNo());
+		ApproveBeneficiaryResponse response = new ApproveBeneficiaryResponse();
 		if(beneficiary==null){
+
 			return null;
 		}else{
 			if(approveBeneficiaryRequest.getFromCustomer()==beneficiary.getCustomer().getId()){
-
+				beneficiary.setApproved(approveBeneficiaryRequest.getApproved());
+				beneDAO.save(beneficiary);
+				response.setApproved(beneficiary.getApproved());
+				response.setBeneficiaryAcNo(beneficiary.getBeneficiaryAccountNo());
+				response.setFromCustomer(approveBeneficiaryRequest.getFromCustomer());
+				response.setBeneficiaryAddedDate(beneficiary.getBeneficiaryAddDate());
+				return response;
 			}
-			// not finished
+			return null;
 		}
-		return null;
+
 	}
 
 	public List<BeneficiaryResponse> getBeneByCustomer(long userid) {
