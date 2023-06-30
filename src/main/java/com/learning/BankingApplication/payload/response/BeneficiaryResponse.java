@@ -1,11 +1,11 @@
 package com.learning.BankingApplication.payload.response;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
-
-
+import com.learning.BankingApplication.entity.Approved;
 import com.learning.BankingApplication.entity.BeneficiaryActive;
 
 import lombok.AllArgsConstructor;
@@ -16,11 +16,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BeneficiaryResponse {
-	@NotBlank
+	
 //	@Length(12)
-	private String accountNo;
-	@NotBlank
-	private String beneficiaryName;
-	@NotNull
+	private long beneficiaryId;
+	
+	private String beneficiaryAccountNo;
+	
+	private String fromCustomerName;
+	
+	private long fromCustomerId;
+	
 	private BeneficiaryActive active;
+	
+	private Date beneficiaryAddedDate;
+	
+	private Approved approve;
+	
 }

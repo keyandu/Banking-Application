@@ -14,7 +14,7 @@ import com.learning.BankingApplication.payload.response.BeneficiaryResponse;
 
 public interface BeneficiaryService {
 	ResponseEntity<?> addBene(long userid, BeneficiaryRequest beneReq);
-	List<BeneficiaryInformation> listAllBeneficiaryToBeApproved();
+	List<BeneficiaryResponse> listAllBeneficiaryToBeApproved();
 	ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest);
 
 	List<BeneficiaryResponse> getBeneByCustomer(long userid);

@@ -45,16 +45,19 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	}
 	@Override
 
-	public List<BeneficiaryInformation> listAllBeneficiaryToBeApproved() {
+	public List<BeneficiaryResponse> listAllBeneficiaryToBeApproved() {
 		List<Beneficiary> beneficiaries =beneDAO.findBeneficiariesByApproved(Approved.NO);
 
-		List<BeneficiaryInformation> result = new ArrayList<BeneficiaryInformation>();
+		List<BeneficiaryResponse> result = new ArrayList<BeneficiaryResponse>();
 		for(Beneficiary b :beneficiaries){
-			BeneficiaryInformation bi = new BeneficiaryInformation();
-			bi.setApproved(Approved.NO);
-			bi.setBeneficiaryAcNo(b.getBeneficiaryAccountNo());
+			BeneficiaryResponse bi = new BeneficiaryResponse();
+			bi.setApprove(Approved.NO);
+			bi.setBeneficiaryId(b.getBeneficiaryAccountNo());
+			bi.setBeneficiaryAccountNo(b.getAccountNo());
 			bi.setBeneficiaryAddedDate(b.getBeneficiaryAddDate());
-			bi.setFromCustomer(b.getCustomer().getId());
+			bi.setFromCustomerName(b.getCustomer().getUsername());
+			bi.setFromCustomerId(b.getCustomer().getId());
+			bi.setActive(b.getActive());
 			result.add(bi);
 		}
  		return result;
@@ -63,15 +66,23 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 	@Override
 	public ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest) {
 		Beneficiary beneficiary = beneDAO.getById(approveBeneficiaryRequest.getBeneficiaryAcNo());
+		ApproveBeneficiaryResponse response = new ApproveBeneficiaryResponse();
 		if(beneficiary==null){
+
 			return null;
 		}else{
 			if(approveBeneficiaryRequest.getFromCustomer()==beneficiary.getCustomer().getId()){
-
+				beneficiary.setApproved(approveBeneficiaryRequest.getApproved());
+				beneDAO.save(beneficiary);
+				response.setApproved(beneficiary.getApproved());
+				response.setBeneficiaryAcNo(beneficiary.getBeneficiaryAccountNo());
+				response.setFromCustomer(approveBeneficiaryRequest.getFromCustomer());
+				response.setBeneficiaryAddedDate(beneficiary.getBeneficiaryAddDate());
+				return response;
 			}
-			// not finished
+			return null;
 		}
-		return null;
+
 	}
 
 	public List<BeneficiaryResponse> getBeneByCustomer(long userid) {
@@ -81,8 +92,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		List<Beneficiary> beneList = user.getBeneficiary();
 		List<BeneficiaryResponse> res = new ArrayList<BeneficiaryResponse>();
 		for (Beneficiary beneficiary : beneList) {
-			res.add(new BeneficiaryResponse(beneficiary.getAccountNo(),beneficiary.getBeneficiaryName()
-					,beneficiary.getActive()));
+			res.add(new BeneficiaryResponse(beneficiary.getBeneficiaryAccountNo(),beneficiary.getAccountNo(),beneficiary.getCustomer().getUsername(),beneficiary.getCustomer().getId(),beneficiary.getActive(),beneficiary.getBeneficiaryAddDate(),beneficiary.getApproved()
+					));
 		}
 		return res;
 	}

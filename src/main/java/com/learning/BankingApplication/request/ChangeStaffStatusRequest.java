@@ -11,17 +11,12 @@ import javax.validation.constraints.Pattern;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangeCustomerStatusRequest {
-
+public class ChangeStaffStatusRequest {
     @NotNull
     @NotBlank
-
-    private long customerId;
-    
-    
+    private long staffId;
+    @NotNull
     @NotBlank
     @Pattern(regexp = "Enable|Disable",message = "should enter Enable or Disable")
-    @NotNull
     private Status status;
-
 }

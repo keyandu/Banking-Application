@@ -1,13 +1,19 @@
 package com.learning.BankingApplication.controller;
 
+import com.learning.BankingApplication.entity.Account;
+import com.learning.BankingApplication.entity.Transaction;
 import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.model.CustomerInformation;
+import com.learning.BankingApplication.payload.response.AccountDetailResponse;
+import com.learning.BankingApplication.payload.response.TransactionResponse;
 import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ApproveAccountRequest;
+import com.learning.BankingApplication.request.ApproveBeneficiaryRequest;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
 
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 
+import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.AccountService;
 import com.learning.BankingApplication.service.BeneficiaryService;
@@ -19,6 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,12 +48,12 @@ public class StaffController {
     //Not Working
     @PutMapping("/changeCustomerStatus")
 
-    public ResponseEntity changeCustomerStatus(@RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
+    public ResponseEntity<?> changeCustomerStatus(@RequestBody ChangeCustomerStatusRequest changeCustomerStatusRequest) {
        // System.out.println(changeCustomerStatusRequest.getCustomerId());
 
         String result=userService.changeCustomerStatus(changeCustomerStatusRequest);
 
-        if(result.equals("Customer status not changed")||result.equals("customer not find")){
+        if(result.equals("Instruction is null")||result.equals("Customer status not changed")||result.equals("customer not find")){
             return new ResponseEntity(result, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity("Change customer status success", HttpStatus.OK);
@@ -76,7 +84,7 @@ public class StaffController {
 
     }
     
-    //Not Working
+
     @PutMapping("/approveAccountOrNot")
     public ResponseEntity approveAccountOrNot(@RequestBody @Valid ApproveAccountRequest approveAccountRequest) {
     	String msg = accountService.approveAccount(approveAccountRequest);
@@ -89,9 +97,17 @@ public class StaffController {
 
     }
 
-    @GetMapping("/getAccountStatmentById")
-    public ResponseEntity getAccountStatmentById(@RequestBody long id){
-        return new ResponseEntity(accountService.accountDetail(id),HttpStatus.OK);
+    @GetMapping("/getAccountStatmentById/{id}")
+    public ResponseEntity getAccountStatmentById(@PathVariable long id){
+    	Account acc = accountService.accountDetail(id);
+    	if(acc==null) return new ResponseEntity<String>("Account doesn't exist",HttpStatus.BAD_REQUEST);
+    	List<Transaction> t = acc.getTransactions();
+    	List<TransactionResponse> tr = new ArrayList<TransactionResponse>();
+    	for(Transaction tran: t) {
+    		tr.add(new TransactionResponse(tran.getCreateDate(), tran.getReference(), tran.getAmount()));
+    	}
+    	AccountDetailResponse res = new AccountDetailResponse(acc.getAccountNo(), acc.getAccountType(), acc.getAccountBalance(), acc.getAccountStatus(), tr);
+        return new ResponseEntity(res,HttpStatus.OK);
 
     }
     @GetMapping("/listBeneficiaryToBeApproved")
@@ -99,9 +115,13 @@ public class StaffController {
         return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
 
     }
-//    @PutMapping("/approveBeneficiaryOrNot")
-//    public ResponseEntity approveBeneficiaryOrNot(){
-//      //  return new ResponseEntity(beneficiaryService.listAllBeneficiaryToBeApproved(),HttpStatus.OK);
-//
-//    }
+    @PutMapping("/approveBeneficiaryOrNot")
+    public ResponseEntity approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest){
+        ApproveBeneficiaryResponse result= beneficiaryService.approveBeneficiaryOrNot(approveBeneficiaryRequest);
+        if(result==null){
+            return  new ResponseEntity("Sorry beneficiary not approved",HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(result,HttpStatus.OK);
+
+    }
 }

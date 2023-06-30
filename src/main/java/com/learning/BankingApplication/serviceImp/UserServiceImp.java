@@ -13,6 +13,7 @@ import com.learning.BankingApplication.repo.PasswordTokenRepo;
 import com.learning.BankingApplication.repo.UserRepo;
 import com.learning.BankingApplication.repo.UserRepository;
 import com.learning.BankingApplication.request.ChangeCustomerStatusRequest;
+import com.learning.BankingApplication.request.ChangeStaffStatusRequest;
 import com.learning.BankingApplication.request.GetCustomerByIdRequest;
 import com.learning.BankingApplication.response.GetCustomerByIdResponse;
 import com.learning.BankingApplication.service.UserService;
@@ -29,6 +30,7 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -67,7 +69,7 @@ public class UserServiceImp implements UserService {
             return "customer not find";
         }
         Status newStatus = changeCustomerStatusRequest.getStatus();
-
+        if(newStatus==null) return "Instruction is null";
                 try{
                     customer.setCustomerStatus(newStatus);
                     userRepository.save(customer);
@@ -82,7 +84,9 @@ public class UserServiceImp implements UserService {
     @Override
     public GetCustomerByIdResponse getCustomerById(GetCustomerByIdRequest getCustomerByIdRequest) {
         User user = userRepository.findById(getCustomerByIdRequest.getId()).orElse(null);
-        if(user!=null){
+        List role = user.getRoles().stream().map(x->x.getName()).collect(Collectors.toList());
+       
+        if(user!=null&&role.contains(ERole.ROLE_CUSTOMER)){
             return new GetCustomerByIdResponse(user.getId(),user.getFullname(),user.getCustomerStatus(),user.getCreateDate());
         }
         return null;
@@ -124,4 +128,53 @@ public class UserServiceImp implements UserService {
 		userRepository.save(res);
 		return ResponseEntity.ok(new MessageResponse("Customer Updated"));
 	}
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<CustomerInformation> listAllStaffByAdmin() {
+        List<User> users = userRepository.findAll();
+        List<CustomerInformation> result = new ArrayList<CustomerInformation>();
+        if(users!=null){
+            for(User user : users){
+                for(Role role : user.getRoles()){
+                    if(role.getName().equals(ERole.ROLE_STAFF)){
+                        CustomerInformation customerInformation = new CustomerInformation();
+                        customerInformation.setId(user.getId());
+                        customerInformation.setName(user.getFullname());
+                        customerInformation.setStatus(user.getStaffStatus());
+                        result.add(customerInformation);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public String enableOrDisableStaff(ChangeStaffStatusRequest changeStaffStatusRequest) {
+    	System.out.println(changeStaffStatusRequest.getStaffId());
+        User staff = userRepository.getById(changeStaffStatusRequest.getStaffId());
+        System.out.println(staff.getRoles().contains(ERole.ROLE_STAFF));
+        if(staff==null){
+            return "staff not find";
+        }
+        Status newStatus = changeStaffStatusRequest.getStatus();
+        System.out.println(newStatus);
+        try{
+            staff.setStaffStatus(newStatus);
+            userRepository.save(staff);
+        }catch (Exception e){
+            return "staff status not changed";
+        }
+        return "success";
+    }
 }

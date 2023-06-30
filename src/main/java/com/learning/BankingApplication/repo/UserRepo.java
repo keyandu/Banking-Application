@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends JpaRepository<User,Long> {
     List<User> findAll();
+    Boolean existsByUsername(String username);
 
 	User getUserByPasswordResetToken(PasswordResetToken token);
 
