@@ -13,9 +13,9 @@ public class Transfer {
     @GeneratedValue
     private long transferId;
 
-    private long fromAccountNo;
+    private String fromAccountNo;
 
-    private long toAccountNo;
+    private String toAccountNo;
 
     private double amount;
 
@@ -24,23 +24,34 @@ public class Transfer {
 
     private Status transferStatus=Disable;
 
-    public long getFromAccountNo() {
+    public String getFromAccountNo() {
         return fromAccountNo;
     }
 
-    public void setFromAccountNo(long fromAccountNo) {
+    public void setFromAccountNo(String fromAccountNo) {
         this.fromAccountNo = fromAccountNo;
     }
 
-    public long getToAccountNo() {
+    public String getToAccountNo() {
         return toAccountNo;
     }
 
-    public void setToAccountNo(long toAccountNo) {
+    public void setToAccountNo(String toAccountNo) {
         this.toAccountNo = toAccountNo;
     }
 
-    public double getAmount() {
+    public Transfer(long transferId, String fromAccountNo, String toAccountNo, double amount, User byCustomer,
+			Status transferStatus) {
+		super();
+		this.transferId = transferId;
+		this.fromAccountNo = fromAccountNo;
+		this.toAccountNo = toAccountNo;
+		this.amount = amount;
+		this.byCustomer = byCustomer;
+		this.transferStatus = transferStatus;
+	}
+
+	public double getAmount() {
         return amount;
     }
 
