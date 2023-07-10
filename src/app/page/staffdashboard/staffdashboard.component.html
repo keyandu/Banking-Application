@@ -13,10 +13,10 @@
           <a class="nav-link" routerLink='transfer'>Transfer</a>
         </li>
         <li class="nav-item">
-            <button  (click)="logoutHandler()">Logout</button>
+            <a  class="nav-link" (click)="logoutHandler()" routerLink='staffLogin' >Logout</a>
         </li>
         <li class="nav-item">
-          welcome: {{username}}
+          <a class="nav-link" routerLink='staff-profile'>welcome: {{username}}</a>
         </li>
         
          
@@ -49,24 +49,21 @@
 
               
                         
-                <button routerLink='transfer'>By Account Number</button>
+                <button routerLink='staffFindByAccountNumber'>By Account Number</button>
                      
                     
-                <button routerLink='transfer'>Approve Beneficiary</button>
+                <button routerLink='staffApploveBeneficiary'>Approve Beneficiary</button>
                     
                   
-                 <button routerLink='transfer'>Approve Account</button>
+                 <button routerLink='staffApploveAccount'>Approve Account</button>
                     
                      
-                <button routerLink='transfer'>Enable/Block Customer</button>
+                <button routerLink='staffDisableOrEnableCustomer'>Enable/Block Customer</button>
                     
                        
                      
                     
-                <!-- <button>By Account Number</button>
-                <button>Approve Beneficiary</button>
-                <button>Approve Account</button>
-                <button>Enable/Block Customer</button> -->
+             
             </div>
             
             

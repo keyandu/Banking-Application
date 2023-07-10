@@ -7,6 +7,8 @@ import { JwtTokenResponse } from '../model/JwtTokenResponse';
 import { LoginRequest } from '../model/LoginRequest';
 import { AccountStatment } from '../model/AccountStatement';
 import { AccountInformation } from '../model/AccountInformation';
+import { CustomerInformation } from '../model/CustomerInformation';
+import { BeneficiaryInformation } from '../model/BeneficiaryInformation';
 
 
 @Injectable({
@@ -17,14 +19,16 @@ export class StaffServiceService {
   constructor(private http : HttpClient) { }
  
   public staffLogin(username:string,password:string):Observable<JwtTokenResponse>{
-   this.loginRequest.username=username;
-   this.loginRequest.password=password;
+  
     return  this.http.post<JwtTokenResponse>(
         environment.staffLoginUrl,
-        this.loginRequest
+        {
+          username,
+          password
+        }
       ).pipe(map(response=>{
-        if(response.token!=''){
-          localStorage.setItem("staffToken",response.token);
+        if(response.accessToken!=''){
+          localStorage.setItem("staffToken",response.accessToken);
           localStorage.setItem("staffUsername",response.username);
           localStorage.setItem("staffEmail",response.email);
           localStorage.setItem("staffType",response.type);
@@ -66,6 +70,18 @@ getAllAccountToBeApproved():Observable<AccountInformation>{
 }
 approveAccount(id:number){
 
-  return this.http.put(environment.approveAccount,{id,approve:'Yes'})
+  return this.http.put(environment.approveAccount,{id,approveOrNot:'Yes'})
+}
+listAllCustomer():Observable<CustomerInformation>{
+  return this.http.get<CustomerInformation>(environment.listAllCustomer)
+}
+changeCustomerStatus(customerId:number,status:string){
+  return this.http.put(environment.EnableOrDisableCustomer,{customerId,status})
+}
+listBan():Observable<BeneficiaryInformation>{
+  return this.http.get<BeneficiaryInformation>(environment.listBanToBeApproved)
+}
+approveBan(fromCustomer:number,beneficiaryAcNo:number,beneficiaryAddedDate:Date){
+  return this.http.put(environment.approveban,{fromCustomer,beneficiaryAcNo,beneficiaryAddedDate,approved:'YES'})
 }
 }

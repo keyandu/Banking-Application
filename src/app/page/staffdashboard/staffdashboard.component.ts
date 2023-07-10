@@ -16,6 +16,6 @@ export class StaffdashboardComponent {
   }
   logoutHandler(){
     this.staffService.logout();
-    this.router.navigate(['/staffLogin'])
+    //this.router.navigate(['/staffLogin'])
   }
 }

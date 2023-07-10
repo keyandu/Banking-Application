@@ -1,1 +1,25 @@
-<p>staff-approve-beneficiary works!</p>
+<br /><br /><br /><br /><br /><br /><br /><br />
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <td>From Customer</td>
+            <td>Beneficiary Ac No</td>
+            <td>Beneficiary Added Date</td>
+        
+            <td>Approve</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of BeneficiaryList">
+            <td>{{x.fromCustomer}}</td>
+            <td>{{x.beneficiaryAcNo}}</td>
+            <td>{{x.beneficiaryAddedDate}}</td>
+            
+            <td>
+                <button (click)="approveOnClick(x.fromCustomer,x.beneficiaryAcNo,x.beneficiaryAddedDate)">Approve</button>
+                 
+            </td>
+        </tr>
+    </tbody>
+</table>
