@@ -1,0 +1,146 @@
+
+
+
+
+ <body>
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+  
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/dashboard">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/create_account">
+          <i class="bi bi-plus-circle"></i><span>Create Account</span>
+        </a>
+        
+
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Beneficiary</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="forms-elements.html">
+              <i class="bi bi-circle"></i><span>Beneficiary List</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/add_beneficary">
+              <i class="bi bi-circle"></i><span>Add Beneficiary</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Transfer</span>
+        </a>
+        
+      </li><!-- End Tables Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed"  routerLink="/statement">
+          <i class="bi bi-bar-chart"></i><span>Statements</span>
+        </a>
+        
+      </li><!-- End Charts Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" routerLink="/profile">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+      
+  
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+  
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add Beneficiary</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+          <li class="breadcrumb-item">Beneficiary</li>
+          <li class="breadcrumb-item active">Add Beneficiary</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Beneficiary</h5>
+
+              <!-- General Form Elements -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Enter Account Number</label>
+                  <div class="col-sm-7">
+                    <input [(ngModel)]="beneficiary.accountNo" name = "accountNum" type="text" class="form-control">
+                   
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-3 col-form-label">Confirm Account Number</label>
+                  <div class="col-sm-7">
+                    <input [(ngModel)]="new_account_number" name="confirmedNum" type="text" class="form-control">
+                 
+                  </div>
+
+                </div>
+                <div class="err-msg" *ngIf="errMes"><strong class="text-danger">*Error</strong>: Confirmed Account Number is not matched</div>
+                <div class="row mb-3">
+                    <label for="inputText" class="col-sm-3 col-form-label">Enter Beneficiary Name</label>
+                    <div class="col-sm-7">
+                      <input [(ngModel)]="beneficiary.beneficiaryName" name="error" type="text" class="form-control">
+                    </div>
+  
+                  </div>
+
+
+                <div class="row mb-3">
+                  <label class="col-sm-3 col-form-label">Add Beneficiary</label>
+                  <div class="col-sm-7">
+                    <button type="submit" (click)="addBene(1)" class="btn btn-primary">Add</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  
+
+</body>
+

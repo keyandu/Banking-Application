@@ -1,0 +1,168 @@
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+  
+        <ul class="sidebar-nav" id="sidebar-nav">
+    
+          <li class="nav-item">
+            <a class="nav-link collapsed " routerLink="/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link collapsed " routerLink="/create_account">
+              <i class="bi bi-plus-circle"></i><span>Create Account</span>
+            </a>
+            
+  
+          </li><!-- End Components Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Beneficiary</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="forms-elements.html">
+                  <i class="bi bi-circle"></i><span>Beneficiary List</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/add_beneficary">
+                  <i class="bi bi-circle"></i><span>Add Beneficiary</span>
+                </a>
+              </li>
+            </ul>
+          </li><!-- End Forms Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-layout-text-window-reverse"></i><span>Transfer</span>
+            </a>
+            
+          </li><!-- End Tables Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link" data-bs-target="#charts-nav" data-bs-toggle="collapse" routlerLink="/statement">
+              <i class="bi bi-bar-chart"></i><span>Statements</span>
+            </a>
+            
+          </li><!-- End Charts Nav -->
+    
+          <li class="nav-item">
+            <a class="nav-link collapsed" routerLink="/profile">
+              <i class="bi bi-person"></i>
+              <span>Profile</span>
+            </a>
+          </li><!-- End Profile Page Nav -->
+    
+          
+      
+    
+        </ul>
+    
+      </aside><!-- End Sidebar-->
+        
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Statements</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+              <li class="breadcrumb-item">Statements</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+        <section class="section">
+          <div class="row align-items-top">
+           <!-- Card with titles, buttons, and links -->
+           
+           
+            <div class="col-lg-9">
+                <div id="accordion">
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Collapsible Group Item #1
+                          </button>
+                        </h5>
+                      </div>
+                  
+                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <a class="card col-lg-12 link-underline link-underline-opacity-0" routerLink="#">
+                                        <h5 class="card-title">Card with titles, buttons, and links</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    
+                                    </a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a class="card col-lg-12 link-underline link-underline-opacity-0" routerLink="#">
+                                        <h5 class="card-title">Card with titles, buttons, and links</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    
+                                    </a>
+                                </div>
+                                <div class="col-lg-4">
+                                    <a class="card col-lg-12 link-underline link-underline-opacity-0" routerLink="#">
+                                        <h5 class="card-title">Card with titles, buttons, and links</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Collapsible Group Item #2
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Collapsible Group Item #3
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+    
+            </div>
+    
+          </div>
+        </section>
+    
+      </main><!-- End #main -->
+
+
+
+
+
