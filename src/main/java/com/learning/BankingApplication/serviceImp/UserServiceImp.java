@@ -9,6 +9,7 @@ import com.learning.BankingApplication.entity.User;
 import com.learning.BankingApplication.model.CustomerInformation;
 import com.learning.BankingApplication.payload.request.UpdateCustomerReq;
 import com.learning.BankingApplication.payload.response.MessageResponse;
+import com.learning.BankingApplication.payload.response.UserProfileResponse;
 import com.learning.BankingApplication.repo.PasswordTokenRepo;
 import com.learning.BankingApplication.repo.UserRepo;
 import com.learning.BankingApplication.repo.UserRepository;
@@ -82,8 +83,8 @@ public class UserServiceImp implements UserService {
 
 
     @Override
-    public GetCustomerByIdResponse getCustomerById(GetCustomerByIdRequest getCustomerByIdRequest) {
-        User user = userRepository.findById(getCustomerByIdRequest.getId()).orElse(null);
+    public GetCustomerByIdResponse getCustomerById(Long id) {
+        User user = userRepository.findById(id).orElse(null);
         List role = user.getRoles().stream().map(x->x.getName()).collect(Collectors.toList());
        
         if(user!=null&&role.contains(ERole.ROLE_CUSTOMER)){
@@ -177,4 +178,13 @@ public class UserServiceImp implements UserService {
         }
         return "success";
     }
+
+	@Override
+	public ResponseEntity<?> getUserProfile(Long id) {
+		// TODO Auto-generated method stub
+		User user = userRepository.findById(id).orElse(null);
+		if(user==null) return ResponseEntity.ok(new MessageResponse("user not found"));
+		UserProfileResponse userProfile = new UserProfileResponse(user.getId(), user.getFullname(), user.getUsername(), user.getEmail(), user.getMobileNo(), user.getAddress());
+		return ResponseEntity.ok(userProfile);
+	}
 }

@@ -8,11 +8,14 @@ import com.learning.BankingApplication.entity.Approved;
 import com.learning.BankingApplication.model.BeneficiaryInformation;
 import com.learning.BankingApplication.request.ApproveBeneficiaryRequest;
 import com.learning.BankingApplication.response.ApproveBeneficiaryResponse;
+
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.learning.BankingApplication.entity.Beneficiary;
+import com.learning.BankingApplication.entity.BeneficiaryActive;
 import com.learning.BankingApplication.entity.User;
 import com.learning.BankingApplication.payload.request.BeneficiaryRequest;
 import com.learning.BankingApplication.payload.response.BeneficiaryResponse;
@@ -56,6 +59,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 			bi.setBeneficiaryAccountNo(b.getAccountNo());
 			bi.setBeneficiaryAddedDate(b.getBeneficiaryAddDate());
 			bi.setFromCustomerName(b.getCustomer().getUsername());
+			bi.setBeneficiaryName(b.getBeneficiaryName());
 			bi.setFromCustomerId(b.getCustomer().getId());
 			bi.setActive(b.getActive());
 			result.add(bi);
@@ -92,10 +96,27 @@ public class BeneficiaryServiceImpl implements BeneficiaryService{
 		List<Beneficiary> beneList = user.getBeneficiary();
 		List<BeneficiaryResponse> res = new ArrayList<BeneficiaryResponse>();
 		for (Beneficiary beneficiary : beneList) {
-			res.add(new BeneficiaryResponse(beneficiary.getBeneficiaryAccountNo(),beneficiary.getAccountNo(),beneficiary.getCustomer().getUsername(),beneficiary.getCustomer().getId(),beneficiary.getActive(),beneficiary.getBeneficiaryAddDate(),beneficiary.getApproved()
-					));
+			if(beneficiary.getActive()==BeneficiaryActive.YES) {
+				res.add(new BeneficiaryResponse(beneficiary.getBeneficiaryAccountNo(),beneficiary.getAccountNo(),beneficiary.getCustomer().getUsername(),beneficiary.getBeneficiaryName(),beneficiary.getCustomer().getId(),beneficiary.getActive(),beneficiary.getBeneficiaryAddDate(),beneficiary.getApproved()
+						));
+			}
 		}
 		return res;
+	}
+	@Override
+	public String deactive(long bid, String deactive) {
+		// TODO Auto-generated method stub
+		Beneficiary bene = beneDAO.findById(bid).orElse(null);
+		if(bene==null) {
+			return "Beneficiary not found";
+		}
+		
+		if(deactive.equals("NO")) {
+			bene.setActive(BeneficiaryActive.NO);
+			beneDAO.save(bene);
+			return "Deactive successfully";
+		}
+		return "No Changes Happened";
 	}
 	
 

@@ -18,5 +18,6 @@ public interface BeneficiaryService {
 	ApproveBeneficiaryResponse approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest);
 
 	List<BeneficiaryResponse> getBeneByCustomer(long userid);
+	String deactive(long bid, String deactive);
 
 }

@@ -4,6 +4,15 @@ import com.learning.BankingApplication.entity.AccountType;
 import com.learning.BankingApplication.entity.Status;
 
 public class AccountResponse {
+	private long id; 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	private String accountNo;
     private AccountType accountType;
     private double accountBalance;
@@ -42,8 +51,9 @@ public class AccountResponse {
 		this.accountStatus = accountStatus;
 	}
 
-	public AccountResponse(String accountNo, AccountType accountType, double accountBalance, Status accountStatus) {
+	public AccountResponse(long id, String accountNo, AccountType accountType, double accountBalance, Status accountStatus) {
 		super();
+		this.id = id;
 		this.accountNo = accountNo;
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;

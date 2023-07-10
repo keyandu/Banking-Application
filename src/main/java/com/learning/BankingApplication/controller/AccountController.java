@@ -42,7 +42,7 @@ public class AccountController {
 		List<Account> acctList = accoutServ.getAccountsByUser(id);
 		if(acctList==null) return ResponseEntity.ok("User not found");
 		for (Account account : acctList) {
-			res.add(new AccountResponse(account.getAccountNo(),account.getAccountType(),account.getAccountBalance(),account.getAccountStatus()));
+			res.add(new AccountResponse(account.getId(),account.getAccountNo(),account.getAccountType(),account.getAccountBalance(),account.getAccountStatus()));
 		}
 		return ResponseEntity.ok(res);
 	}

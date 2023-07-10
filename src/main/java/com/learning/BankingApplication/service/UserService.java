@@ -20,9 +20,9 @@ public interface UserService {
 
    public String changeCustomerStatus(ChangeCustomerStatusRequest changeCustomerStatusRequest);
 
-   public GetCustomerByIdResponse getCustomerById(GetCustomerByIdRequest getCustomerByIdRequest);
+   public GetCustomerByIdResponse getCustomerById(Long id);
 
-
+   public ResponseEntity<?> getUserProfile(Long id);
    public void createPasswordResetTokenForUser(User user, String token);
 
    public User getUserByPasswordResetToken(PasswordResetToken passToken);

@@ -24,6 +24,8 @@ public class BeneficiaryResponse {
 	
 	private String fromCustomerName;
 	
+	private String beneficiaryName;
+	
 	private long fromCustomerId;
 	
 	private BeneficiaryActive active;

@@ -60,9 +60,9 @@ public class StaffController {
     }
 
     
-    @GetMapping("/getCustomerById")
-    public ResponseEntity getCustomerById(@RequestBody @Valid GetCustomerByIdRequest getCustomerByIdRequest) {
-        GetCustomerByIdResponse result = userService.getCustomerById(getCustomerByIdRequest);
+    @GetMapping("/getCustomerById/{id}")
+    public ResponseEntity getCustomerById(@PathVariable Long id) {
+        GetCustomerByIdResponse result = userService.getCustomerById(id);
         if(result!=null){
             return new ResponseEntity(result, HttpStatus.OK);
         }
