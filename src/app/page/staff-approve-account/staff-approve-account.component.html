@@ -1,0 +1,27 @@
+<br /><br />
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <td>accountNo</td>
+            <td>Customer</td>
+            <td>accountType</td>
+            <td>CreateTime</td>
+            <td>Approve</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of accountList">
+            <td>{{x.accNo}}</td>
+            <td>{{x.customerName}}</td>
+            <td>{{x.accountType}}</td>
+            <td>{{x.dateCreated}}</td>
+            <td>{{x.approved}}</td>
+            <td>
+                <button (click)="approveOnClick(x.accNo)">Approve</button>
+                 
+            </td>
+        </tr>
+    </tbody>
+</table>

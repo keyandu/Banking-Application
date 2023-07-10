@@ -48,18 +48,11 @@ export class StaffLoginComponent implements OnInit {
     this.loading=true;
     this.staffService.staffLogin(this.f['username'].value, this.f['password'].value)
       .pipe(first())
-      .subscribe({
-        next:()=>{
-          const returnUrl=this.route.snapshot.queryParams['returnUrl'] ||'/';
-          this.router.navigateByUrl(returnUrl);
-        },
-        error: error => {
-          this.alertService.error(error);
-          this.loading = false;
-      }
-        
-       
+      .subscribe(resp=>{
       })
 
+    if(this.staffService.isLoggedIn()){
+      this.router.navigate(['/staffDashboard']);
+    }
   }
 }

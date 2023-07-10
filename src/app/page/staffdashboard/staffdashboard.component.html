@@ -10,10 +10,13 @@
           <a class="nav-link" routerLink='Home'>Home <span class="sr-only">(current)</span></a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" routerLink='main'>Main</a>
+          <a class="nav-link" routerLink='transfer'>Transfer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink='staffLogin'>Staff Login</a>
+            <button  (click)="logoutHandler()">Logout</button>
+        </li>
+        <li class="nav-item">
+          welcome: {{username}}
         </li>
         
          
@@ -37,7 +40,36 @@
     <div class="starter-template">
         <router-outlet>
             <!-- Content will be loaded here -->
-          
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div nowrap>
+
+              
+                        
+                <button routerLink='transfer'>By Account Number</button>
+                     
+                    
+                <button routerLink='transfer'>Approve Beneficiary</button>
+                    
+                  
+                 <button routerLink='transfer'>Approve Account</button>
+                    
+                     
+                <button routerLink='transfer'>Enable/Block Customer</button>
+                    
+                       
+                     
+                    
+                <!-- <button>By Account Number</button>
+                <button>Approve Beneficiary</button>
+                <button>Approve Account</button>
+                <button>Enable/Block Customer</button> -->
+            </div>
+            
+            
         </router-outlet>
     </div>
    
