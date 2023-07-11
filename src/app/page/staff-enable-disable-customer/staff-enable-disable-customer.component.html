@@ -1,36 +1,45 @@
 <aside id="sidebar" class="sidebar">
   
     <ul class="sidebar-nav" id="sidebar-nav">
+      
+      
+    
+    <!-- <li class="nav-item">
+        <a class="nav-link" *ngIf="!logined" routerLink='staffLogin'>Staff-Login</a>
+      </li> -->
   
       <li class="nav-item">
         <a class="nav-link collapsed " routerLink="/staffApploveAccount">
-          <i class="bi bi-plus-circle"></i><span>Approve Account</span>
+          <i class="bi bi-check-circle"></i><span>Approve Account</span>
         </a>
         
   
       </li><!-- End Components Nav -->
-  
       <li class="nav-item">
-        <a class="nav-link collapsed  " routerLink="/staffFindByAccountNumber">
+        <a class="nav-link collapsed" routerLink='/staffTransfer'>
+          <i class="bi bi-coin"></i><span>Staff Transfer</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/staffFindByAccountNumber">
           <i class="bi bi-grid"></i>
           <span>Search By AccountNo</span>
         </a>
       </li><!-- End Dashboard Nav -->
   
       <li class="nav-item">
-        <a class="nav-link collapsed " data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
           <i class="bi bi-journal-text"></i><span>Approve Beneficiary</span>
         </a>
       
       </li><!-- End Forms Nav -->
   
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Enable/Block Customer</span>
+        <a class="nav-link" data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
+          <i class="bi bi-toggles"></i><span>Enable/Block Customer</span>
         </a>
         
       </li><!-- End Tables Nav -->
-  
+      
     </ul>
   
   </aside><!-- End Sidebar-->
@@ -39,7 +48,7 @@
         <h1>Enable/Block Customer</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a routerLink="/staffDashboard">StaffDashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/staffLogin">StaffDashboard</a></li>
             <li class="breadcrumb-item">Enable/Disable Customer</li>
     
           </ol>

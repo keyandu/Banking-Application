@@ -15,6 +15,8 @@ export class StaffLoginComponent implements OnInit {
   form!: FormGroup;
   loading=false;
   submitted=false;
+  logined:boolean=this.staffService.logined;
+  username =localStorage.getItem('staffUsername');
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +39,11 @@ export class StaffLoginComponent implements OnInit {
   get f(){
     return this.form.controls;
   }
+  reloadPage() {
+    setTimeout(()=>{
+      window.location.reload();
+    }, 1000);
+}
 
 
   onSubmit(){
@@ -49,11 +56,11 @@ export class StaffLoginComponent implements OnInit {
     this.staffService.staffLogin(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe(resp=>{
-        console.log(localStorage.getItem('staffToken'))
+        localStorage.setItem("staff-logined",'true')
+        this.username=localStorage.getItem('staffUsername');
       })
+      this.reloadPage();
 
-    if(this.staffService.isLoggedIn()){
-      this.router.navigate(['../'],{ relativeTo: this.route });
-    }
+    
   }
 }

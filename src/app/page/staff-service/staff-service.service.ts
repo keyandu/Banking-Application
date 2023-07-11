@@ -16,6 +16,7 @@ import { BeneficiaryInformation } from '../model/BeneficiaryInformation';
 })
 export class StaffServiceService {
   loginRequest:LoginRequest=new LoginRequest();
+  logined:boolean=(localStorage.getItem("staff-logined")=='true');
   constructor(private http : HttpClient) { }
  
   public staffLogin(username:string,password:string):Observable<JwtTokenResponse>{
@@ -33,6 +34,7 @@ export class StaffServiceService {
           localStorage.setItem("staffEmail",response.email);
           localStorage.setItem("staffType",response.type);
           localStorage.setItem("expires_at", moment().add(1,'day').valueOf.toString() );
+          this.logined=(localStorage.getItem("staff-logined")=='true');
         }
         return response;
       }));
@@ -46,6 +48,7 @@ logout() {
   localStorage.removeItem("staffEmail");
   localStorage.removeItem("staffType");
   localStorage.removeItem("expires_at");
+  localStorage.removeItem("staff-logined")
 }
 
 public isLoggedIn() {

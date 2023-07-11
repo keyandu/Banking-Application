@@ -14,6 +14,7 @@ import { StaffApproveBeneficiaryComponent } from './page/staff-approve-beneficia
 import { StaffByAccountNumberComponent } from './page/staff-by-account-number/staff-by-account-number.component';
 import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable-customer/staff-enable-disable-customer.component';
 import { AdminPortalComponent } from './page/admin-portal/admin-portal.component';
+import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
 const routes: Routes = [
   {path:'dashboard',component:MainComponent},
   {path:'create_account',component:CreateAcctComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:"staffApploveBeneficiary",component:StaffApproveBeneficiaryComponent},
   {path:"staffFindByAccountNumber",component:StaffByAccountNumberComponent},
   {path:"staffDisableOrEnableCustomer",component:StaffEnableDisableCustomerComponent},
+  {path:"staffTransfer",component:StaffTransferComponent},
   {path:"admin",component:AdminPortalComponent}
 ];
 
