@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 public class ApproveAccountRequest {
 	@NotNull
 	@NotBlank
-    private Long id;
+	private String accNo;
     public String getApproveOrNot() {
 		return approveOrNot;
 	}
@@ -23,12 +23,16 @@ public class ApproveAccountRequest {
 	@NotNull
 	@NotBlank
 	private String approveOrNot;
-	public Long getId() {
-		return id;
+
+	public String getAccNo() {
+		return accNo;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	} 
+
+	public void setAccNo(String accNo) {
+		this.accNo = accNo;
+	}
+
+}
 
   
-}
+

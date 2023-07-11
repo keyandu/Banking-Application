@@ -116,7 +116,8 @@ public class StaffController {
 
     }
     @PutMapping("/approveBeneficiaryOrNot")
-    public ResponseEntity approveBeneficiaryOrNot(ApproveBeneficiaryRequest approveBeneficiaryRequest){
+    public ResponseEntity approveBeneficiaryOrNot(@RequestBody ApproveBeneficiaryRequest approveBeneficiaryRequest){
+        System.out.println(approveBeneficiaryRequest.getApproved());
         ApproveBeneficiaryResponse result= beneficiaryService.approveBeneficiaryOrNot(approveBeneficiaryRequest);
         if(result==null){
             return  new ResponseEntity("Sorry beneficiary not approved",HttpStatus.BAD_REQUEST);

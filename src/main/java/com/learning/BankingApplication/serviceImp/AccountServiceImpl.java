@@ -47,10 +47,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String approveAccount(ApproveAccountRequest approveAccountRequest) {
-        Long accountNo = approveAccountRequest.getId();
-        Account  account = accountRepo.findById(accountNo).orElse(null);
+        String accountNo = approveAccountRequest.getAccNo();
+        System.out.println(accountNo);
+        Account  account = accountRepo.getAccountByAccountNo(accountNo).orElse(null);
         if(account==null){
+
             return null;
+
         }
         
         if(approveAccountRequest.getApproveOrNot().equals("Approve")) {
