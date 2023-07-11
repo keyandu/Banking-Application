@@ -8,6 +8,9 @@ import { StaffApproveAccountComponent } from './page/staff-approve-account/staff
 import { StaffApproveBeneficiaryComponent } from './page/staff-approve-beneficiary/staff-approve-beneficiary.component';
 import { StaffByAccountNumberComponent } from './page/staff-by-account-number/staff-by-account-number.component';
 import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable-customer/staff-enable-disable-customer.component';
+import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
+import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
+import { AdminLoginComponent } from './page/admin-login/admin-login.component';
 const routes: Routes = [
   {path:'main',component:MainComponent},
   {path:'staffLogin',component:StaffLoginComponent},
@@ -15,7 +18,10 @@ const routes: Routes = [
   {path:"staffApploveAccount",component:StaffApproveAccountComponent},
   {path:"staffApploveBeneficiary",component:StaffApproveBeneficiaryComponent},
   {path:"staffFindByAccountNumber",component:StaffByAccountNumberComponent},
-  {path:"staffDisableOrEnableCustomer",component:StaffEnableDisableCustomerComponent}
+  {path:"staffDisableOrEnableCustomer",component:StaffEnableDisableCustomerComponent},
+  {path:"adminCreateStaff",component:AdminCreateStaffComponent},
+  {path:'adminLogin',component:AdminLoginComponent},
+  {path:'adminEnableStaff',component:AdminEnableStaffComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,37 @@
+<div class="staff-login-card" *ngIf="!logined">
+    <h4 class="staff-login-card-header">Admin Login</h4>
+    <div class="staff-login-card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                </div>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    Login
+                </button>
+                Owing An Account With Us 
+                <a routerLink="../register" class="btn btn-link">login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div >
+<h3> welcome {{username}}</h3>
+<div nowarp >
+    <button routerLink="../adminCreateStaff">create staff</button>
+    <button routerLink="../adminEnableStaff">enable/disable staff</button>
+</div>
+    <button (click)="logout()">admin logout</button>
+</div>

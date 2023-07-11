@@ -17,6 +17,9 @@ import { StaffApproveAccountComponent } from './page/staff-approve-account/staff
 import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable-customer/staff-enable-disable-customer.component';
 import { StaffApproveBeneficiaryComponent } from './page/staff-approve-beneficiary/staff-approve-beneficiary.component';
 import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
+import { AdminLoginComponent } from './page/admin-login/admin-login.component';
+import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
+import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.com
     StaffEnableDisableCustomerComponent,
     StaffApproveBeneficiaryComponent,
     StaffTransferComponent,
+    AdminLoginComponent,
+    AdminCreateStaffComponent,
+    AdminEnableStaffComponent,
  
   ],
   imports: [
