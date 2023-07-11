@@ -1,0 +1,28 @@
+<main id="main" class="main">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div nowrap>
+
+
+<input type="number" name="AccountNumber" [(ngModel)]="accountNumber"/>
+<button (click)="goOnClick()"> Go</button>
+
+</div>
+
+<div ng-show="showDetail">
+    <br>
+    <p>accountNo: {{accountStatment.accountNo}}</p>
+    <br>
+    <p>accountType: {{accountStatment.accountType}}</p>
+    <br>
+    <p>accountBalance: {{accountStatment.accountBalance}}</p>
+    <br>
+    <p>accountStatus: {{accountStatment.accountStatus}}</p>
+    <br>
+</div>
+</main>
