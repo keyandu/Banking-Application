@@ -9,12 +9,14 @@ import { StaffServiceService } from '../staff-service/staff-service.service';
 export class StaffApproveAccountComponent {
   accountList:any=[];
   constructor(
-    private _staffService:StaffServiceService
+    private staffService:StaffServiceService
   ){
-    this._staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
+    this.staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
 
   }
   approveOnClick(accNo:string){
-    this._staffService.approveAccount(Number(accNo))
+    this.staffService.approveAccount(accNo);
+    console.log(accNo)
+    this.staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
   }
 }

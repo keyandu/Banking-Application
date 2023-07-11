@@ -15,6 +15,9 @@ export class StaffApproveBeneficiaryComponent {
 
   }
   approveOnClick(fromCustomer:number,accountNumber:number,addedDate:Date){
-    this._staffService.approveBan(fromCustomer,accountNumber,addedDate);
+    this._staffService.approveBan(fromCustomer,accountNumber,addedDate).subscribe(result=>{
+      console.log(result);
+    });
+    this._staffService.listBan().subscribe(result=>{this.BeneficiaryList=result});
   }
 }

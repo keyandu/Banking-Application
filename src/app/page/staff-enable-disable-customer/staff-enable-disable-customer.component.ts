@@ -16,7 +16,14 @@ export class StaffEnableDisableCustomerComponent {
   }
   EnableOrDisableOnClick(id:number,status:string){
       const status1=(status=='Enable')?'Disable':'Enable';
-      this.staffService.changeCustomerStatus(id,status1);
+      this.staffService.changeCustomerStatus(id,status1).subscribe(
+        result=>{
+          console.log(result);
+        }
+      );
+      this.staffService.listAllCustomer().subscribe(result=>{
+        this.customerList=result;
+      });
   }
 
 }

@@ -18,10 +18,15 @@ export class StaffByAccountNumberComponent {
 
   }
   goOnClick(){
+    
     this.staffService.getAccountById(this.accountNumber).subscribe(result=>{
       this.accountStatment=result;
+      console.log(result);
+    },error=>{
+      this.showDetail=false;
+      console.log(error);
     });
-    if(this.accountStatment.accountNo!=null){
+    if(this.accountStatment.accountType!=''){
       this.showDetail=true;
     }else{
       this.showDetail=false;

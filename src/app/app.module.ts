@@ -16,6 +16,7 @@ import { StaffByAccountNumberComponent } from './page/staff-by-account-number/st
 import { StaffApproveAccountComponent } from './page/staff-approve-account/staff-approve-account.component';
 import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable-customer/staff-enable-disable-customer.component';
 import { StaffApproveBeneficiaryComponent } from './page/staff-approve-beneficiary/staff-approve-beneficiary.component';
+import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StaffApproveBeneficiaryComponent } from './page/staff-approve-beneficia
     StaffApproveAccountComponent,
     StaffEnableDisableCustomerComponent,
     StaffApproveBeneficiaryComponent,
+    StaffTransferComponent,
  
   ],
   imports: [

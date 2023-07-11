@@ -13,8 +13,10 @@
 <button (click)="goOnClick()"> Go</button>
 
 </div>
-
-<div ng-show="showDetail">
+<div *ngIf="!showDetail">
+    <p>Please enter valid account number</p>
+</div>
+<div *ngIf="showDetail">
     <br>
     <p>accountNo: {{accountStatment.accountNo}}</p>
     <br>

@@ -68,9 +68,13 @@ getAccountById(id:number) :Observable<AccountStatment>{
 getAllAccountToBeApproved():Observable<AccountInformation>{
   return this.http.get<AccountInformation>(environment.listAccountToBeApproved)
 }
-approveAccount(id:number){
+approveAccount(accNo:string){
 
-  return this.http.put(environment.approveAccount,{id,approveOrNot:'Yes'})
+  return this.http.put(environment.approveAccount,{accNo,approveOrNot:'Approve'}).
+  subscribe(result=> {
+    console.log(result);
+  })
+  
 }
 listAllCustomer():Observable<CustomerInformation>{
   return this.http.get<CustomerInformation>(environment.listAllCustomer)
@@ -82,6 +86,7 @@ listBan():Observable<BeneficiaryInformation>{
   return this.http.get<BeneficiaryInformation>(environment.listBanToBeApproved)
 }
 approveBan(fromCustomer:number,beneficiaryAcNo:number,beneficiaryAddedDate:Date){
+  console.log(beneficiaryAcNo)
   return this.http.put(environment.approveban,{fromCustomer,beneficiaryAcNo,beneficiaryAddedDate,approved:'YES'})
 }
 }

@@ -1,6 +1,10 @@
 export class BeneficiaryInformation{
-    fromCustomer:number=0;
-    beneficiaryAcNo:number=0;
+    beneficiaryId:number=0;
+    beneficiaryAccountNo:string='';
+    fromCustomerName:string='';
+    beneficiaryName:string=''; 
+    fromCustomerId:number=0; 
+    active:string='';
     beneficiaryAddedDate:Date=new Date();
-    approved:string='';
+    approve:string='';
 }
