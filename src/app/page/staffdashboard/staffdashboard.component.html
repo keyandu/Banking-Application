@@ -16,8 +16,11 @@
             <a  class="nav-link" (click)="logoutHandler()" routerLink='staffLogin' >Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink='staff-profile'>welcome: {{username}}</a>
+          <a class="nav-link" *ngIf="logined" routerLink='staffLogin'>welcome: {{username}}</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" *ngIf="!logined" routerLink='staffLogin'>Staff-Login</a>
+          </li>
         
          
         <!-- <li class="nav-item dropdown">

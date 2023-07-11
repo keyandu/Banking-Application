@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StaffdashboardComponent {
   username =localStorage.getItem('staffUsername');
+  logined:boolean=this.staffService.logined;
   constructor(
   private staffService: StaffServiceService,
   private router: Router  ){
@@ -16,6 +17,7 @@ export class StaffdashboardComponent {
   }
   logoutHandler(){
     this.staffService.logout();
+    window.location.reload();
     //this.router.navigate(['/staffLogin'])
   }
 }
