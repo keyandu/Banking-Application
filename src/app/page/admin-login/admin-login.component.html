@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<div >
+<div *ngIf="!logined" >
 <h3> welcome {{username}}</h3>
 <div nowarp >
     <button routerLink="../adminCreateStaff">create staff</button>
