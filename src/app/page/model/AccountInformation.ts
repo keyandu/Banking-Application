@@ -1,7 +1,7 @@
 
 export class AccountInformation{
   
-    accountType:string= '';
+    accType:string= '';
     customerName:string='';
     accNo: string= '';
     dateCreated:Date=new Date();

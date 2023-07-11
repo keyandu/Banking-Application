@@ -49,10 +49,11 @@ export class StaffLoginComponent implements OnInit {
     this.staffService.staffLogin(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe(resp=>{
+        console.log(localStorage.getItem('staffToken'))
       })
 
     if(this.staffService.isLoggedIn()){
-      this.router.navigate(['/staffDashboard']);
+      this.router.navigate(['../'],{ relativeTo: this.route });
     }
   }
 }

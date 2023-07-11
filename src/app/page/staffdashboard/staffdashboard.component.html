@@ -1,76 +1,89 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Admin Portal</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<aside id="sidebar" class="sidebar">
   
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" routerLink='Home'>Home <span class="sr-only">(current)</span></a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link" routerLink='transfer'>Transfer</a>
-        </li>
-        <li class="nav-item">
-            <button  (click)="logoutHandler()">Logout</button>
-        </li>
-        <li class="nav-item">
-          welcome: {{username}}
-        </li>
-        
-         
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
-      </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
-    </div>
-  </nav>
-  <main role="main" class="container">
+  <ul class="sidebar-nav" id="sidebar-nav">
 
-    <div class="starter-template">
-        <router-outlet>
-            <!-- Content will be loaded here -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div nowrap>
+    <li class="nav-item">
+      <a class="nav-link collapsed " routerLink="/staffApploveAccount">
+        <i class="bi bi-plus-circle"></i><span>Approve Account</span>
+      </a>
+      
 
+    </li><!-- End Components Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed " routerLink="/staffFindByAccountNumber">
+        <i class="bi bi-grid"></i>
+        <span>Search By AccountNo</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
+        <i class="bi bi-journal-text"></i><span>Approve Beneficiary</span>
+      </a>
+    
+    </li><!-- End Forms Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Enable/Block Customer</span>
+      </a>
+      
+    </li><!-- End Tables Nav -->
+
+  </ul>
+
+</aside><!-- End Sidebar-->
+<main id="main" class="main">
+  
+  <div class="pagetitle">
+    <h1>Staff Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/staffDashboard">StaffDashboard</a></li>
+
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <div class="row">
+    <div class="col-lg-10">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Customer Accounts</h5>
+
+          <!-- Default Table -->
+          <table class="table">
+            <thead>
+            
+              <tr>
+                <th scope="col">AccountNo</th>
+                <th scope="col">Customer</th>
+                <th scope="col">AccountType</th>
+                <th scope="col">CreateTime</th>
+                <th scope="col">Approve</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
               
-                        
-                <button routerLink='transfer'>By Account Number</button>
+              <tr *ngFor="let x of accountList">
+                <th scope="row">{{x.accNo}}</th>
+                <td>{{x.customerName}}</td>
+                <td>{{x.accType}}</td>
+                <td>{{x.dateCreated}}</td>
+                <td>{{x.approved}}</td>
+                <td>
+                    <button (click)="approveOnClick(x.accNo)">Approve</button>
                      
-                    
-                <button routerLink='transfer'>Approve Beneficiary</button>
-                    
-                  
-                 <button routerLink='transfer'>Approve Account</button>
-                    
-                     
-                <button routerLink='transfer'>Enable/Block Customer</button>
-                    
-                       
-                     
-                    
-                <!-- <button>By Account Number</button>
-                <button>Approve Beneficiary</button>
-                <button>Approve Account</button>
-                <button>Enable/Block Customer</button> -->
-            </div>
-            
-            
-        </router-outlet>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- End Default Table Example -->
+        </div>
+      </div>
     </div>
-   
+  </div>
+  
   </main>

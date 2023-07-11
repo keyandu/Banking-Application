@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, reflectComponentType } from '@angular/core';
 import { StaffServiceService } from '../staff-service/staff-service.service';
 
 @Component({
@@ -9,12 +9,18 @@ import { StaffServiceService } from '../staff-service/staff-service.service';
 export class StaffApproveAccountComponent {
   accountList:any=[];
   constructor(
-    private _staffService:StaffServiceService
+    private staffService:StaffServiceService
   ){
-    this._staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
+    this.staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
 
   }
-  approveOnClick(accNo:number){
-    this._staffService.approveAccount(accNo)
+  approveOnClick(accNo:string){
+    this.staffService.approveAccount(accNo);
+    console.log(accNo)
+    this.refresh();
+  }
+  refresh(){
+    this.staffService.getAllAccountToBeApproved().subscribe(result=>{this.accountList=result})
+
   }
 }

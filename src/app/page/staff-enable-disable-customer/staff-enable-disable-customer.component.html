@@ -1,1 +1,90 @@
-<p>staff-enable-disable-customer works!</p>
+<aside id="sidebar" class="sidebar">
+  
+    <ul class="sidebar-nav" id="sidebar-nav">
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/staffApploveAccount">
+          <i class="bi bi-plus-circle"></i><span>Approve Account</span>
+        </a>
+        
+  
+      </li><!-- End Components Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed  " routerLink="/staffFindByAccountNumber">
+          <i class="bi bi-grid"></i>
+          <span>Search By AccountNo</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed " data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
+          <i class="bi bi-journal-text"></i><span>Approve Beneficiary</span>
+        </a>
+      
+      </li><!-- End Forms Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Enable/Block Customer</span>
+        </a>
+        
+      </li><!-- End Tables Nav -->
+  
+    </ul>
+  
+  </aside><!-- End Sidebar-->
+  <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Enable/Block Customer</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/staffDashboard">StaffDashboard</a></li>
+            <li class="breadcrumb-item">Enable/Disable Customer</li>
+    
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+      <div class="row">
+
+    
+          <div class="card col-lg-10">
+            <div class="card-body">
+                <h5 class="card-title">Customer</h5>
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                   
+                  <tr>
+            
+                
+                    <th scope="col">Customer Name</th>
+                    
+                    <th scope="col">Customer Status</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of customerList">
+                        <th scope="row">{{x.name}}</th>
+                       
+                        
+                        <td>
+                            <button (click)="EnableOrDisableOnClick(x.id,x.status)">{{x.status}}</button>
+                             
+                        </td>
+                    </tr>
+                    
+                  
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+       
+      </div>
+
+  </main>
+<br /><br /><br /><br /><br /><br /><br /><br />
+
+

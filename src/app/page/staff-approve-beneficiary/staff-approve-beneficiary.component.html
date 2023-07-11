@@ -1,1 +1,92 @@
-<p>staff-approve-beneficiary works!</p>
+<aside id="sidebar" class="sidebar">
+  
+    <ul class="sidebar-nav" id="sidebar-nav">
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/staffApploveAccount">
+          <i class="bi bi-plus-circle"></i><span>Approve Account</span>
+        </a>
+        
+  
+      </li><!-- End Components Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed  " routerLink="/staffFindByAccountNumber">
+          <i class="bi bi-grid"></i>
+          <span>Search By AccountNo</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
+          <i class="bi bi-journal-text"></i><span>Approve Beneficiary</span>
+        </a>
+      
+      </li><!-- End Forms Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Enable/Block Customer</span>
+        </a>
+        
+      </li><!-- End Tables Nav -->
+  
+    </ul>
+  
+  </aside><!-- End Sidebar-->
+  <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Approve Beneficiary</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/staffDashboard">StaffDashboard</a></li>
+            <li class="breadcrumb-item">Approve Beneficiary</li>
+    
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+      <div class="row">
+
+    
+          <div class="card col-lg-10">
+            <div class="card-body">
+                <h5 class="card-title">Beneficiary</h5>
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+            
+                    <th scope="col">beneficiary Account No</th>
+                    <th scope="col">from Customer Name</th>
+                    
+                    <th scope="col">active</th>
+                    <th scope="col">Beneficiary Added Date</th>
+                    <th scope="col">Approve</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of BeneficiaryList">
+                        <th scope="row">{{x.beneficiaryAccountNo}}</th>
+     
+                        <td>{{x.fromCustomerName}}</td>
+            
+                        
+             
+                        <td>{{x.active}}</td>
+                        <td>{{x.beneficiaryAddedDate}}</td>
+                        
+                        <td>
+                            <button (click)="approveOnClick(x.fromCustomerId,x.beneficiaryId,x.beneficiaryAddedDate)">Approve</button>
+                             
+                        </td>
+                    </tr>
+                  
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+       
+      </div>
+
+  </main>

@@ -1,4 +1,40 @@
-<main id="main" class="main">
+<aside id="sidebar" class="sidebar">
+  
+    <ul class="sidebar-nav" id="sidebar-nav">
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/staffApploveAccount">
+          <i class="bi bi-plus-circle"></i><span>Approve Account</span>
+        </a>
+        
+  
+      </li><!-- End Components Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link  " routerLink="/staffFindByAccountNumber">
+          <i class="bi bi-grid"></i>
+          <span>Search By AccountNo</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" routerLink = "/staffApploveBeneficiary">
+          <i class="bi bi-journal-text"></i><span>Approve Beneficiary</span>
+        </a>
+      
+      </li><!-- End Forms Nav -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/staffDisableOrEnableCustomer">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Enable/Block Customer</span>
+        </a>
+        
+      </li><!-- End Tables Nav -->
+  
+    </ul>
+  
+  </aside><!-- End Sidebar-->
+  <main id="main" class="main">
 <br>
 <br>
 <br>
@@ -13,8 +49,10 @@
 <button (click)="goOnClick()"> Go</button>
 
 </div>
-
-<div ng-show="showDetail">
+<div *ngIf="!showDetail">
+    <p>Please enter valid account number</p>
+</div>
+<div *ngIf="showDetail">
     <br>
     <p>accountNo: {{accountStatment.accountNo}}</p>
     <br>

@@ -22,6 +22,7 @@ import { HomeComponent } from './page/home/home.component';
 import { StatementComponent } from './page/statement/statement.component';
 import { ProfileComponent } from './page/profile/profile.component';
 import { AdminPortalComponent } from './page/admin-portal/admin-portal.component';
+import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AdminPortalComponent } from './page/admin-portal/admin-portal.component
     StaffEnableDisableCustomerComponent,
     StaffApproveBeneficiaryComponent,
     AdminPortalComponent,
+    StaffTransferComponent,
  
   ],
   imports: [
