@@ -20,6 +20,9 @@ import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enabl
 import { AdminLoginComponent } from './page/admin-login/admin-login.component';
 import { CustomerLoginComponent } from './page/customer-login/customer-login.component';
 import { SignUpComponent } from './page/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './page/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
+import { TransferComponent } from './page/transfer/transfer.component';
 const routes: Routes = [
   {path:'dashboard',component:MainComponent},
   {path:'create_account',component:CreateAcctComponent},
@@ -28,6 +31,7 @@ const routes: Routes = [
   {path:'statement',component:StatementComponent},
   {path:'profile',component:ProfileComponent},
   {path:'register',component:SignUpComponent},
+  {path:'transfer',component:TransferComponent},
   {path:'',component:CustomerLoginComponent},
   {path:'staffLogin',component:StaffLoginComponent},
   {path:"staffApploveAccount",component:StaffApproveAccountComponent},
@@ -37,7 +41,9 @@ const routes: Routes = [
   {path:"staffTransfer",component:StaffTransferComponent},
   {path:"adminCreateStaff",component:AdminCreateStaffComponent},
   {path:'adminLogin',component:AdminLoginComponent},
-  {path:'adminEnableStaff',component:AdminEnableStaffComponent}
+  {path:'adminEnableStaff',component:AdminEnableStaffComponent},
+  {path:'forgot_password', component:ForgotPasswordComponent},
+  {path:'changePassword/:token',component:ResetPasswordComponent}
 ];
 
 @NgModule({

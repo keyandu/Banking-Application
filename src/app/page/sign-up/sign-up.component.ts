@@ -16,13 +16,16 @@ export class SignUpComponent {
   }
   create(){
     this.customerService.createCustomer(this.username,this.fullname,this.email,this.password)
-    .subscribe(result=>{
-      console.log(result);
+    .subscribe(res=>{
+      alert(res.message);
+      console.log(res.message);
       this.email='';
       this.fullname='';
       this.password='';
       this.username='';
+      
     });
+    
 }
 }
 

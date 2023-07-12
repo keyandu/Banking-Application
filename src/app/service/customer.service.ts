@@ -53,7 +53,7 @@ logout() {
   localStorage.removeItem("customerLogined")
 }
 createCustomer(username:string,fullname:string,
-  email:string,password:string):Observable<string>{
+  email:string,password:string):Observable<any>{
   return this.http.post<string>("http://localhost:8085/api/register", { username, fullname, email, password,"role":["customer"] });
 }
   getAccountsByCustomer(userId:number):Observable<Account[]>{
@@ -106,5 +106,19 @@ createCustomer(username:string,fullname:string,
   getUserDetail(userid:number):Observable<any>{
     return this.http.get<User[]>("http://localhost:8085/api/customer/getCustomer/"+userid)
 
+  }
+  resetPassword(email:string):Observable<any>{
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+  });
+    return this.http.post("http://localhost:8085/api/user/resetPassword/"+email,{headers:headers});
+  }
+  savePassword(token:string,newPassword:string):Observable<any>{
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+  });
+    return this.http.post("http://localhost:8085/api/user/savePassword/",{token,newPassword},{headers:headers});
   }
 }

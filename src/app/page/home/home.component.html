@@ -96,13 +96,18 @@
               <ol class="list-group list-group-numbered">
                 <li *ngFor="let acct of acctList" class="list-group-item d-flex justify-content-between align-items-start">
                   
-                    <div class="ms-2 me-auto">
+                    <div class="col-lg-8 me-auto">
                         <a style="color: black;" routerLink="/dashboard" (click)="OnClick(acct.id)">
                             <div  class="fw-bold">{{acct.accountNo}}</div>
                         </a>
                         Account Type: {{acct.accountType}}
-                      </div>
-              
+                    </div>
+                    <i class="bi bi-cash-stack"></i><a  style="color: black;" routerLink="/transfer" (click)="OnClick(acct.id)">
+                      <div>Transfer</div>
+                  </a>
+
+                    
+                  
                     
                   
                 </li>

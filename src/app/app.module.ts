@@ -27,6 +27,8 @@ import { AdminLoginComponent } from './page/admin-login/admin-login.component';
 import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
 import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
 import { CustomerLoginComponent } from './page/customer-login/customer-login.component';
+import { ForgotPasswordComponent } from './page/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './page/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { CustomerLoginComponent } from './page/customer-login/customer-login.com
     AdminCreateStaffComponent,
     AdminEnableStaffComponent,
     CustomerLoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
  
   ],
   imports: [
