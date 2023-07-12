@@ -42,7 +42,7 @@ export class StaffLoginComponent implements OnInit {
   reloadPage() {
     setTimeout(()=>{
       window.location.reload();
-    }, 1000);
+    }, 3000);
 }
 
 
