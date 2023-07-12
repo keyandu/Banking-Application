@@ -25,8 +25,6 @@ public class TransferController {
 
     @Autowired
     private TransferService transferService;
-    @Autowired
-    private AccountService accountService;
 
     @GetMapping("/{transferId}")
     public ResponseEntity<Transfer> findTransferById(@PathVariable long transferId) {
