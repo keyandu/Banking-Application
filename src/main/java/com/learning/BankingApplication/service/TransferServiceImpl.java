@@ -42,8 +42,11 @@ public class TransferServiceImpl implements TransferService{
 	
 	public String makeTransfer(TransferRequest transferRequest) {
 		// 1) check balance
-		Account fromAcc = accountDAO.getById(transferRequest.getFromAccountId());
-		Account toAcc=accountDAO.getById(transferRequest.getToAccountId());
+		Account fromAcc = accountDAO.getAccountByAccountNo(transferRequest.getFromAccountNo()).orElse(null);
+		Account toAcc=accountDAO.getAccountByAccountNo(transferRequest.getToAccountNo()).orElse(null);
+		if(fromAcc==null||toAcc==null){
+			return "account not find";
+		}
 		Double amount=transferRequest.getAmount();
 		Double maxAmount = fromAcc.getAccountBalance();
 		if (amount > maxAmount) {

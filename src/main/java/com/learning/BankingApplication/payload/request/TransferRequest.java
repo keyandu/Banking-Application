@@ -2,33 +2,30 @@ package com.learning.BankingApplication.payload.request;
 
 public class TransferRequest {
 
-    private long fromAccountId;
-    private long toAccountId;
+    private String fromAccountNo;
+    private String toAccountNo;
     private double amount;
+    private String reference;
 
-    public TransferRequest(long fromAccountId, long toAccountId, double amount) {
-        this.fromAccountId = fromAccountId;
-        this.toAccountId = toAccountId;
-        this.amount = amount;
-    }
+
     public TransferRequest() {
 
     }
 
-    public long getFromAccountId() {
-        return fromAccountId;
+    public String getFromAccountNo() {
+        return fromAccountNo;
     }
 
-    public void setFromAccountId(long fromAccountId) {
-        this.fromAccountId = fromAccountId;
+    public void setFromAccountNo(String fromAccountNo) {
+        this.fromAccountNo = fromAccountNo;
     }
 
-    public long getToAccountId() {
-        return toAccountId;
+    public String getToAccountNo() {
+        return toAccountNo;
     }
 
-    public void setToAccountId(long toAccountId) {
-        this.toAccountId = toAccountId;
+    public void setToAccountNo(String toAccountNo) {
+        this.toAccountNo = toAccountNo;
     }
 
     public double getAmount() {
@@ -37,5 +34,20 @@ public class TransferRequest {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public TransferRequest(String fromAccountNo, String toAccountNo, double amount, String reference) {
+        this.fromAccountNo = fromAccountNo;
+        this.toAccountNo = toAccountNo;
+        this.amount = amount;
+        this.reference = reference;
     }
 }
