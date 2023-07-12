@@ -110,7 +110,6 @@ public class AuthController {
   }
   @PostMapping("/staff/authenticate")
   public ResponseEntity<?> authenticateStaff(@Valid @RequestBody LoginRequest loginRequest) {
-
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.learning.BankingApplication.entity.Account;
 import com.learning.BankingApplication.entity.Transfer;
 import com.learning.BankingApplication.payload.request.TransferRequest;
+import com.learning.BankingApplication.response.RegularStringResponse;
 import com.learning.BankingApplication.service.AccountService;
 import com.learning.BankingApplication.service.TransferService;
 
@@ -45,9 +46,10 @@ public class TransferController {
     }
 
     @PostMapping("/make")
-    public ResponseEntity<String> makeTransfer(@RequestBody TransferRequest transferRequest) {
-        String result = transferService.makeTransfer(transferRequest);
-        if(result.equals("success")){
+    public ResponseEntity<RegularStringResponse> makeTransfer(@RequestBody TransferRequest transferRequest) {
+
+        RegularStringResponse result =new RegularStringResponse( transferService.makeTransfer(transferRequest));
+        if(result.getResponse().equals("success")){
             return new ResponseEntity(result, HttpStatus.OK);
         }
         return new ResponseEntity(result, HttpStatus.BAD_REQUEST);
