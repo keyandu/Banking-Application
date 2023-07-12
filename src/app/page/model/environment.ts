@@ -12,4 +12,6 @@ export const environment = {
     createStaff:'http://localhost:8080/api/admin/createstaff',
     listAllStaff:'http://localhost:8080/api/admin/listAllStaff',
     enableStaff:'http://localhost:8080/api/admin/EnableOrDisableStaff',
+    staffTransfer:'http://localhost:8080/transfers/make',
+    listTransfer:'http://localhost:8080/transfers/listAllTransfers',
 };

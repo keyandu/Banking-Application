@@ -11,6 +11,7 @@ import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable
 import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
 import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
 import { AdminLoginComponent } from './page/admin-login/admin-login.component';
+import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
 const routes: Routes = [
   {path:'main',component:MainComponent},
   {path:'staffLogin',component:StaffLoginComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:"staffDisableOrEnableCustomer",component:StaffEnableDisableCustomerComponent},
   {path:"adminCreateStaff",component:AdminCreateStaffComponent},
   {path:'adminLogin',component:AdminLoginComponent},
-  {path:'adminEnableStaff',component:AdminEnableStaffComponent}
+  {path:'adminEnableStaff',component:AdminEnableStaffComponent},
+  {path:'staffTransfer',component:StaffTransferComponent}
 ];
 
 @NgModule({

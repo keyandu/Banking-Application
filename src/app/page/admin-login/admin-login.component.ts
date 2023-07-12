@@ -15,7 +15,7 @@ export class AdminLoginComponent {
   loading=false;
   submitted=false;
   logined:boolean=this.adminService.logined;
-  username =localStorage.getItem('staffUsername');
+  username =localStorage.getItem('adminUsername');
   
   constructor(
     private formBuilder: FormBuilder,

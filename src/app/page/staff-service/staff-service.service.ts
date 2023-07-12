@@ -92,4 +92,7 @@ approveBan(fromCustomer:number,beneficiaryAcNo:number,beneficiaryAddedDate:Date)
   console.log(beneficiaryAcNo)
   return this.http.put(environment.approveban,{fromCustomer,beneficiaryAcNo,beneficiaryAddedDate,approved:'YES'})
 }
+transfer(fromAccountNo:string,toAccountNo:string,amount:number,reference:string):Observable<string>{
+  return this.http.post<string>(environment.staffTransfer,{fromAccountNo,toAccountNo,amount,reference});
+}
 }
