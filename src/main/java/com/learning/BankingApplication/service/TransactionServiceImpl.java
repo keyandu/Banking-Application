@@ -1,13 +1,12 @@
 package com.learning.BankingApplication.service;
 
+import java.util.Date;
 import java.util.List;
 
+import com.learning.BankingApplication.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.learning.BankingApplication.entity.Account;
-import com.learning.BankingApplication.entity.Transaction;
-import com.learning.BankingApplication.entity.TransactionType;
 import com.learning.BankingApplication.repo.AccountRepo;
 import com.learning.BankingApplication.repo.TransactionRepo;
 
@@ -16,61 +15,70 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
 	TransactionRepo transactionDAO;
-	
+
 	@Autowired
 	AccountRepo accountDAO;
-	
+
 	@Override
-	public String viewAccountStatement(Account account) { /* list all transasctions */		
+	public List<Transaction> viewAccountStatement(String accountNo) { /* list all transasctions */
+		Account account = accountDAO.getAccountByAccountNo(accountNo).orElse(null);
 		List<Transaction> transactions = account.getTransactions();
-		StringBuilder statementBuilder = new StringBuilder();
 
-		for(Transaction transaction : transactions) {
-			statementBuilder.append("Account Statement for account number: ").append(account.getAccountNo()).append("\n");
-			statementBuilder.append("Transaction ID: ").append(transaction.getId()).append("\n");
-			statementBuilder.append("Transaction Type: ").append(transaction.getTransactionType()).append("\n");
-			statementBuilder.append("Date: ").append(transaction.getCreateDate()).append("\n");
-		    statementBuilder.append("Amount: ").append(transaction.getAmount()).append("\n");
-		    }
-		return statementBuilder.toString();
+
+		return transactions;
 	}
 
-	
+
 	@Override
-	public String withdrawCash(Transaction transaction) {
-		if (transaction.getTransactionType()  == TransactionType.DB) {
-			Transaction t = new Transaction(transaction.getId(),
-			transaction.getCreateDate(), transaction.getReference(), transaction.getAmount(), 
-			transaction.getTransactionType(), transaction.getAccount(), transaction.getApproved());
-			
-			Account acc = transaction.getAccount();
-			double curr = acc.getAccountBalance();
-			curr -= transaction.getAmount();
-			acc.setAccountBalance(curr);
-			accountDAO.save(acc);
-			transactionDAO.save(t);
-			return "debit withdraw saved!";
+	public String withdrawCash(String toAcc, double amount, String reference) {
+		Account account = accountDAO.getAccountByAccountNo(toAcc).orElse(null);
+		if (account.getAccountBalance() <= amount) {
+			return "balance not enough";
 		}
-				
-		return "invalid transaction type!"; 
+		if (account.getAccountStatus() == Status.Disable) {
+			return "The Account is disable";
+		}
+		try {
+			Transaction t1 = new Transaction();
+			t1.setAccount(account);
+			t1.setAmount(amount);
+			t1.setTransactionType(TransactionType.DB);
+			t1.setApproved(Approved.YES);
+			t1.setReference(reference);
+			t1.setCreateDate(new Date());
+
+			account.setAccountBalance(account.getAccountBalance() - amount);
+			accountDAO.save(account);
+			transactionDAO.save(t1);
+			return "success";
+		} catch (Exception e) {
+			return "failed";
+		}
+
 	}
 
 	@Override
-	public String depositCash(Transaction transaction) {
-		if (transaction.getTransactionType()  == TransactionType.DB) {
-			Transaction t = new Transaction(transaction.getId(),
-			transaction.getCreateDate(), transaction.getReference(), transaction.getAmount(), 
-			transaction.getTransactionType(), transaction.getAccount(), transaction.getApproved());
-					
-			Account acc = transaction.getAccount();
-			double curr = acc.getAccountBalance();
-			curr += transaction.getAmount();
-			acc.setAccountBalance(curr);
-			accountDAO.save(acc);
-			transactionDAO.save(t);
-			return "debit deposit saved!";
+	public String depositCash(String toAcc, double amount, String reference) {
+		Account account = accountDAO.getAccountByAccountNo(toAcc).orElse(null);
+		if (account.getAccountStatus() == Status.Disable) {
+			return "The Account is disable";
 		}
-				
-		return "invalid transaction type!"; 
-	 }
+		try {
+			Transaction t1 = new Transaction();
+			t1.setAccount(account);
+			t1.setAmount(amount);
+			t1.setTransactionType(TransactionType.DB);
+			t1.setApproved(Approved.YES);
+			t1.setReference(reference);
+			t1.setCreateDate(new Date());
+
+			account.setAccountBalance(account.getAccountBalance() + amount);
+			accountDAO.save(account);
+			transactionDAO.save(t1);
+			return "success";
+		} catch (Exception e) {
+			return "failed";
+		}
+
+	}
 }

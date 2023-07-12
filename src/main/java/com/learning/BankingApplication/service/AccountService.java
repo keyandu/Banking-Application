@@ -19,6 +19,7 @@ public interface AccountService {
 	public Account accountDetail(long id);
 
 	public List<AccountInformation> findAllAccountToBeApproved();
+	public List<AccountInformation>findAllAccountToBeDisApproved();
   
 	public List<AccountInformation> listAllAccount();
   

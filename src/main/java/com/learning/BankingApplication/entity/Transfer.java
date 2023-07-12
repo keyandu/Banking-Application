@@ -51,7 +51,10 @@ public class Transfer {
 		this.transferStatus = transferStatus;
 	}
 
-	public double getAmount() {
+    public Transfer() {
+    }
+
+    public double getAmount() {
         return amount;
     }
 

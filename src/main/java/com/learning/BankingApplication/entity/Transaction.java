@@ -20,9 +20,12 @@ public class Transaction {
 
     private Approved approved=Approved.NO;
 
+    public Transaction() {
+
+    }
 
     public Transaction(long id, Date createDate, String reference, double amount, TransactionType transactionType,
-			Account account, Approved approved) {
+                       Account account, Approved approved) {
 		super();
 		this.id = id;
 		this.createDate = createDate;

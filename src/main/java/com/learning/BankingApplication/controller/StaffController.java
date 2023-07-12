@@ -76,6 +76,14 @@ public class StaffController {
         return new ResponseEntity(accountService.findAllAccountToBeApproved(), HttpStatus.OK);
 
     }
+
+    @GetMapping("/getAllAccountToBeaisApproved")
+
+    public ResponseEntity getAllAccountToBeDisapprove() {
+
+        return new ResponseEntity(accountService.findAllAccountToBeDisApproved(), HttpStatus.OK);
+
+    }
     
     @GetMapping("/dispalyAllAccount")
     public ResponseEntity dispalyAllAccount() {

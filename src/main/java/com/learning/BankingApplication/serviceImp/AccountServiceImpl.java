@@ -107,4 +107,9 @@ public class AccountServiceImpl implements AccountService {
 	public Account accountDetail(long id) {
 		return accountRepo.findById(id).orElse(null);
 	}
+
+    @Override
+    public List<AccountInformation> findAllAccountToBeDisApproved() {
+        return null;
+    }
 }
