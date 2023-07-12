@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.learning.BankingApplication.entity.Account;
 import com.learning.BankingApplication.entity.Transfer;
+import com.learning.BankingApplication.payload.request.TransferRequest;
 
 public interface TransferService {
 	public Transfer findTransferBYId( long transferId);
 	
-	public List<Transfer> listAllTransfers(Account account);
+	public List<Transfer> listAllTransfers();
 	
-	public String makeTransfer(Account fromAcc, Account toAcc, double amount);
+	public String makeTransfer(TransferRequest transferRequest);
 }
