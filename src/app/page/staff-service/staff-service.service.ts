@@ -9,6 +9,7 @@ import { AccountStatment } from '../model/AccountStatement';
 import { AccountInformation } from '../model/AccountInformation';
 import { CustomerInformation } from '../model/CustomerInformation';
 import { BeneficiaryInformation } from '../model/BeneficiaryInformation';
+import { stringResponse } from '../model/RegularStringResponse';
 
 
 @Injectable({
@@ -92,7 +93,7 @@ approveBan(fromCustomer:number,beneficiaryAcNo:number,beneficiaryAddedDate:Date)
   console.log(beneficiaryAcNo)
   return this.http.put(environment.approveban,{fromCustomer,beneficiaryAcNo,beneficiaryAddedDate,approved:'YES'})
 }
-transfer(fromAccountNo:string,toAccountNo:string,amount:number,reference:string):Observable<string>{
-  return this.http.post<string>(environment.staffTransfer,{fromAccountNo,toAccountNo,amount,reference});
+transfer(fromAccountNo:string,toAccountNo:string,amount:number,reference:string):Observable<stringResponse>{
+  return this.http.post<stringResponse>(environment.staffTransfer,{fromAccountNo,toAccountNo,amount,reference});
 }
 }

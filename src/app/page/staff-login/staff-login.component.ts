@@ -59,7 +59,7 @@ export class StaffLoginComponent implements OnInit {
         localStorage.setItem("staff-logined",'true')
         this.username=localStorage.getItem('staffUsername');
       })
-      //this.reloadPage();
+      this.reloadPage();
 
     
   }

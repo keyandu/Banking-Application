@@ -20,7 +20,8 @@ export class StaffTransferComponent {
       alert("amount can not less than 0");
       return;
     }
-    this.staffservice.transfer(this.fromAccount,this.toAccount,this.amount,this.remarks).subscribe(result=>{
+    this.staffservice.transfer(this.fromAccount,this.toAccount,this.amount,this.remarks).
+    subscribe(result=>{
       this.fromAccount='';
       this.toAccount='';
       this.amount=0;
