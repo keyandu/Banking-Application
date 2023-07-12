@@ -61,7 +61,11 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
-
+      <li class="nav-item">
+        <a  class="nav-link collapsed" (click)="logoutHandler()" routerLink='staffLogin' >
+          <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+          </a>
+    </li>
       
   
 
@@ -72,7 +76,8 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Welcome to BankingApp</h1>
+      <h1>Welcome, {{username}}</h1>
+
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>

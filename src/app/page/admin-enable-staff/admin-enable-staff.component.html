@@ -1,0 +1,84 @@
+<aside id="sidebar" class="sidebar">
+  
+    <ul class="sidebar-nav" id="sidebar-nav">
+      
+      
+  
+    <!-- <li class="nav-item">
+        <a class="nav-link" *ngIf="!logined" routerLink='staffLogin'>Staff-Login</a>
+      </li> -->
+  
+      <li class="nav-item">
+        <a class="nav-link collapsed " routerLink="/adminCreateStaff">
+          <i class="bi bi-check-circle"></i><span>Create Staff</span>
+        </a>
+        
+  
+      </li><!-- End Components Nav -->
+      
+   
+  
+
+  
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse"  routerLink ="/adminEnableStaff">
+          <i class="bi bi-toggles"></i><span>Enable/Block Staff</span>
+        </a>
+        
+      </li><!-- End Tables Nav -->
+      
+    </ul>
+  
+  </aside><!-- End Sidebar-->
+  <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Enable/Block Staff</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/adminLogin">Admin</a></li>
+            <li class="breadcrumb-item">Enable/Disable Staff</li>
+    
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+      <div class="row">
+
+    
+          <div class="card col-lg-10">
+            <div class="card-body">
+                <h5 class="card-title">Staff</h5>
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                   
+                  <tr>
+            
+                
+                    <th scope="col">Staff Name</th>
+                    
+                    <th scope="col">Staff Status</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of customerList">
+                        <th scope="row">{{x.name}}</th>
+                       
+                        
+                        <td>
+                            <button (click)="EnableOrDisableOnClick(x.id,x.status)">{{x.status}}</button>
+                             
+                        </td>
+                    </tr>
+                    
+                  
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+       
+      </div>
+
+
+  </main>

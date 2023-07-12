@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AddAcct } from 'src/app/model/AddAcct';
 import { CustomerService } from 'src/app/service/customer.service';
 
@@ -9,15 +10,19 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CreateAcctComponent {
   acct = new AddAcct();
-
-  constructor(private service:CustomerService){
-
+  userId = Number(localStorage.getItem("customerId"))
+  constructor(private service:CustomerService, private router:Router){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
   }
-  addAcct(userId:number){
+  addAcct(){
 
-    this.service.addAcct(userId,this.acct).subscribe(result =>{
+    this.service.addAcct(this.userId,this.acct).subscribe(result =>{
       console.log(result)
     })
+    this.router.navigateByUrl('');
+
 
   }
 }

@@ -14,8 +14,16 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Staff Login</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                     <p class="text-center small">Enter your username & password to login</p>
+                    <div class="col-12 text-center">
+                      <a routerLink="/staffLogin">Staff Login Here</a>
+                      
+                    </div>
+                    <div class="col-12 text-center">
+                      <a routerLink="/adminLogin">Admin Login Here</a>
+                      
+                    </div>
                   </div>
 
                   <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -42,9 +50,12 @@
 
     
                     <div class="col-12">
-                      <button [disabled]="loading" class="btn btn-primary w-100" type="submit">Staff Login</button>
+                      <button [disabled]="loading" class="btn btn-primary w-100" type="submit">Customer Login</button>
                     </div>
                    
+                    <div class="col-12">
+                      <p class="small mb-0">Don't have account? <a routerLink="/register">Create an account</a></p>
+                    </div>
                   </form>
 
                 </div>
@@ -69,7 +80,7 @@
 
 
 <div *ngIf="logined">
-    <app-staffdashboard></app-staffdashboard>
+    <app-home></app-home>
 </div>
 
 

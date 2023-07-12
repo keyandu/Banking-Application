@@ -23,6 +23,10 @@ import { StatementComponent } from './page/statement/statement.component';
 import { ProfileComponent } from './page/profile/profile.component';
 import { AdminPortalComponent } from './page/admin-portal/admin-portal.component';
 import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
+import { AdminLoginComponent } from './page/admin-login/admin-login.component';
+import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
+import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
+import { CustomerLoginComponent } from './page/customer-login/customer-login.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.com
     StaffApproveBeneficiaryComponent,
     AdminPortalComponent,
     StaffTransferComponent,
+    AdminLoginComponent,
+    AdminCreateStaffComponent,
+    AdminEnableStaffComponent,
+    CustomerLoginComponent,
  
   ],
   imports: [

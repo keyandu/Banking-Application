@@ -8,5 +8,9 @@ export const environment = {
     EnableOrDisableCustomer:'http://localhost:8085/api/staff/customer/changeCustomerStatus',
     listBanToBeApproved:'http://localhost:8085/api/staff/customer/listBeneficiaryToBeApproved',
     approveban:'http://localhost:8085/api/staff/customer/approveBeneficiaryOrNot',
-    listAllAccount:'http://localhost:8085/api/staff/customer/dispalyAllAccount'
+    listAllAccount:'http://localhost:8085/api/staff/customer/dispalyAllAccount',
+    adminLoginUrl:'http://localhost:8085/api/admin/authenticate',
+    createStaff:'http://localhost:8085/api/admin/createstaff',
+    listAllStaff:'http://localhost:8085/api/admin/listAllStaff',
+    enableStaff:'http://localhost:8085/api/admin/EnableOrDisableStaff',
 };

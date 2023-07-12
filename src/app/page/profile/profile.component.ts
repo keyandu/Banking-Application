@@ -8,11 +8,20 @@ import { CustomerService } from 'src/app/service/customer.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  userId = Number(localStorage.getItem("customerId"))
+  
   user:any = new User();
   constructor(private _service:CustomerService){
-    this._service.getUserDetail(2).subscribe(res=>{
+    this._service.getUserDetail(this.userId).subscribe(res=>{
       this.user=res;
     })
   }
 
+
+  saveChange():void{
+    this._service.saveChange(this.user.email,this.user.mobileNo,this.user.address).subscribe(res=>{
+      console.log(res);
+      this._service.getUserDetail(this.userId).subscribe(res=>{this.user.res});
+    })
+  }
 }

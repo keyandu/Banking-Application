@@ -15,6 +15,11 @@ import { StaffByAccountNumberComponent } from './page/staff-by-account-number/st
 import { StaffEnableDisableCustomerComponent } from './page/staff-enable-disable-customer/staff-enable-disable-customer.component';
 import { AdminPortalComponent } from './page/admin-portal/admin-portal.component';
 import { StaffTransferComponent } from './page/staff-transfer/staff-transfer.component';
+import { AdminCreateStaffComponent } from './page/admin-create-staff/admin-create-staff.component';
+import { AdminEnableStaffComponent } from './page/admin-enable-staff/admin-enable-staff.component';
+import { AdminLoginComponent } from './page/admin-login/admin-login.component';
+import { CustomerLoginComponent } from './page/customer-login/customer-login.component';
+import { SignUpComponent } from './page/sign-up/sign-up.component';
 const routes: Routes = [
   {path:'dashboard',component:MainComponent},
   {path:'create_account',component:CreateAcctComponent},
@@ -22,14 +27,17 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'statement',component:StatementComponent},
   {path:'profile',component:ProfileComponent},
+  {path:'register',component:SignUpComponent},
+  {path:'',component:CustomerLoginComponent},
   {path:'staffLogin',component:StaffLoginComponent},
-  {path:"staffDashboard",component:StaffdashboardComponent},
   {path:"staffApploveAccount",component:StaffApproveAccountComponent},
   {path:"staffApploveBeneficiary",component:StaffApproveBeneficiaryComponent},
   {path:"staffFindByAccountNumber",component:StaffByAccountNumberComponent},
   {path:"staffDisableOrEnableCustomer",component:StaffEnableDisableCustomerComponent},
   {path:"staffTransfer",component:StaffTransferComponent},
-  {path:"admin",component:AdminPortalComponent}
+  {path:"adminCreateStaff",component:AdminCreateStaffComponent},
+  {path:'adminLogin',component:AdminLoginComponent},
+  {path:'adminEnableStaff',component:AdminEnableStaffComponent}
 ];
 
 @NgModule({

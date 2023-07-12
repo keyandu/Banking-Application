@@ -15,11 +15,12 @@ export class MainComponent {
   acct:any = new Account();
   today:any = new Date();
   deActive:DeActivate = new DeActivate();
+  userId = Number(localStorage.getItem("customerId"))
   constructor(private _customerService: CustomerService){
-    this._customerService.getAccountsByCustomer(2).subscribe(result =>{
+    this._customerService.getAccountsByCustomer(this.userId).subscribe(result =>{
       this.accountList=result;
     })
-    this._customerService.getBeneficiary(2).subscribe(
+    this._customerService.getBeneficiary(this.userId).subscribe(
       result=>{
         this.beneList=result;
       }
@@ -42,7 +43,7 @@ export class MainComponent {
         console.log(res)
       }
     )
-    this._customerService.getBeneficiary(2).subscribe(
+    this._customerService.getBeneficiary(this.userId).subscribe(
       result=>{
         this.beneList=result;
       }

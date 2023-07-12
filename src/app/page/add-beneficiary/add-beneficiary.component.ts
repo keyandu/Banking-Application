@@ -11,14 +11,15 @@ export class AddBeneficiaryComponent {
   beneficiary:AddBene = new AddBene();
   new_account_number:string="";
   errMes:boolean = false;
+  userId = Number(localStorage.getItem("customerId"))
   constructor(private service:CustomerService){
 
   }
 
-  addBene(userId:number){
+  addBene(){
 
     if(this.new_account_number===this.beneficiary.accountNo){
-      this.service.addBene(userId,this.beneficiary).subscribe(result =>{
+      this.service.addBene(this.userId,this.beneficiary).subscribe(result =>{
         console.log(result)
       })
     }
