@@ -1,5 +1,5 @@
 # Banking-Application
-Bank Application
+
 Although the basic type of services provided by banks varies depending on the type of bank and the country, services typically include: accepting deposits from customers and issuing current or checking accounts and savings accounts to individuals and businesses. Loans to individuals and businesses, Cashing a check Facilitating money transfers such as wire transfers and cashiers cheques, as well as consumer and commercial financial advisory services, financial transactions can be carried out through a variety of channels.
 
 Motivation to building banking project:
